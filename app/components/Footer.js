@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -26,11 +26,12 @@ const Footer = () => {
                 <div className="flex flex-col gap-12 md:w-1/4">
                     <div className="*:mb-2 *:leading-4">
                         <h3 className="text-green-600 py-2 lowercase text-sm md:text-3xl font-semibold h-auto ">
-                            maafcraft{"🍃"} 
+                            maafcraft{"🍃"}
                         </h3>
                         <h1 className="font-bold text-[14px] my-2">
-                            CONTACT DETAILS
+                            Location Details
                         </h1>
+                     
                         <p>
                             Factory: South Debipur (Ranigonj), Ghoraghat,
                             Dinajpur, Bangladesh
@@ -42,8 +43,8 @@ const Footer = () => {
                         </p>
                     </div>
                     <div>
-                        <h1 className="font-bold text-[14px] my-2">
-                            WE ARE USING SAFE PAYMENTS:
+                        <h1 className="font-bold text-[14px] my-2 ">
+                            We are using safe payments:
                         </h1>
                         <ul className="flex justify-start gap-6 *:w-10 *:text-4xl">
                             <FontAwesomeIcon
@@ -69,6 +70,8 @@ const Footer = () => {
                         <p className="text-2xl font-bold text-[#ff2832]">
                             +88 01942 257473
                         </p>
+                        <p  className="text-xs font-bold text-green-600">Email 1: contact@maafcraft.com</p>
+                        <p  className="text-xs font-bold text-green-600">Email 2: maafcraftbd@gmail.com</p>
                     </div>
 
                     <div>

@@ -70,9 +70,9 @@ const HeaderTop = () => {
     return (
         <div className="w-full lg:block hidden">
             <div className="md:flex justify-between h-auto md:px-28 bg-[#EFEFEF] py-2">
-                <div className="flex text-green-600 md:p-2 justify-center text-xl md:text-3xl font-semibold h-auto items-center">
-                    <img src="/LOGO.png" alt="logo" height={50} width={50} /> aafcraft and fashion
-                </div>
+                {/* <div >
+                    <img src="/slogo.png" alt="logo"  width={150} />
+                </div> */}
                 <div className="hidden lg:flex flex-col items-center h-auto justify-center text-xs gap-2 text-red-600">
                     <div>
                         <FontAwesomeIcon icon={faPhone} className="w-5" />
@@ -80,7 +80,10 @@ const HeaderTop = () => {
                     </div>
                   
                 </div>
-                <div className="z-20 flex items-center">
+                    <p className="flex text-green-600 justify-center text-xl md:text-3xl font-semibold h-auto items-center">
+                        MAAF Craft and Fashion
+                    </p> 
+                {/* <div className="z-20 flex items-center">
                     <ReactSearchAutocomplete
                         items={items}
                         onSearch={handleOnSearch}
@@ -91,16 +94,17 @@ const HeaderTop = () => {
                     <Link href={"/cart"}>
                         <AiOutlineShoppingCart className="text-4xl ms-10 hover:cursor-pointer" />
                     </Link>
-                </div>
+                </div> */}
 
                 <div className="h-auto flex justify-center items-center gap-3 ">
                     {globalState ? (
-                        <div className="flex w-40 justify-between">
-                            <button onClick={handleProfile}>Profile</button>
-                            <button onClick={handleLogout}>Logout</button>
+                        <div className="flex w-40 justify-around text-xs text-slate-600">
+                            <button onClick={handleProfile} className="hover:font-bold">Profile</button>
+                            <span> | </span> 
+                            <button onClick={handleLogout} className="hover:font-bold" >Logout</button>
                         </div>
                     ) : (
-                        <Link href={"/registration"}>Signup</Link>
+                        <Link href={"/registration"} className="hover:font-bold text-xs">Signup</Link>
                     )}
                 </div>
             </div>
@@ -110,6 +114,7 @@ const HeaderTop = () => {
                     on-time delivery.
                 </Marquee>
             </div>
+            
         </div>
     );
 };

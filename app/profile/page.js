@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from 'react';
 import { getUser, updateUser } from '../api/api';
 import toast, { Toaster } from 'react-hot-toast';
@@ -8,21 +8,22 @@ const Profile = () => {
   const [profile, setProfile] = useState({
     name: '',
     email: '',
+    phone: '',
     linkedIn: '',
     address: '',
+    organization: '',
+    designation: '',
   });
 
-  const getProf = async()=>{
-    // const email = extractDataFromJWT(globalState).sub;
+  const getProf = async () => {
     const res = await getUser(localStorage.getItem("email"));
     console.log(res.data);
-    
     setProfile(res.data);
   }
-  useEffect(()=>{
-    getProf();
 
-  },[])
+  useEffect(() => {
+    getProf();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -43,10 +44,7 @@ const Profile = () => {
   return (
     <div className="max-w-md mb-4 mx-auto mt-10 p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-center">Profile</h2>
-      <hr/>
-      <hr/>
-      <hr/>
-      <hr/>
+      <hr />
       <Toaster position="top-center" reverseOrder={true} />
       <div className="mb-4">
         <label className="block text-gray-700 mt-4">Name📛</label>
@@ -102,9 +100,9 @@ const Profile = () => {
             className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-300"
           />
         ) : (
-          <p href={profile.linkedIn} className="text-gray-700 hover:underline" target="_blank">
+          <a href={profile.linkedIn} className="text-gray-700 hover:underline" target="_blank" rel="noopener noreferrer">
             {profile.linkedIn}
-          </p>
+          </a>
         )}
       </div>
       <div className="mb-4">
@@ -121,8 +119,36 @@ const Profile = () => {
           <p className="text-gray-900">{profile.address}</p>
         )}
       </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Organization 🏢</label>
+        {isEditing ? (
+          <input
+            type="text"
+            name="organization"
+            value={profile.organization}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-300"
+          />
+        ) : (
+          <p className="text-gray-900">{profile.organization}</p>
+        )}
+      </div>
+      <div className="mb-4">
+        <label className="block text-gray-700">Designation 🎓</label>
+        {isEditing ? (
+          <input
+            type="text"
+            name="designation"
+            value={profile.designation}
+            onChange={handleInputChange}
+            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring focus:border-green-300"
+          />
+        ) : (
+          <p className="text-gray-900">{profile.designation}</p>
+        )}
+      </div>
       <div className="text-center">
-      <button
+        <button
           onClick={isEditing ? handleSave : () => setIsEditing(true)}
           className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
         >

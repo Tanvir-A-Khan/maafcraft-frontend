@@ -31,6 +31,8 @@ const RegistrationForm = () => {
         linkedin: "",
         address: "",
         password: "",
+        designation: "",
+        organization: "",
     });
 
     const [otp, setOtp] = useState("");
@@ -47,7 +49,10 @@ const RegistrationForm = () => {
         }));
     };
 
+    const [sending, setSending] = useState(false);
+
     const handleSendOtp = async () => {
+        setSending(true);
         const randomNumber = generateSixDigitRandomNumber();
         // console.log(randomNumber);
         setSotp(randomNumber);
@@ -66,6 +71,8 @@ const RegistrationForm = () => {
         } catch (error) {
             console.error("Failed to send OTP:", error);
             toast("Failed to send OTP. Please try again later.");
+        } finally{
+            setSending(false);
         }
     };
 
@@ -102,6 +109,8 @@ const RegistrationForm = () => {
                 linkedin: "",
                 address: "",
                 password: "",
+                designation: "",
+                organization: "",
             });
             setOtp("");
             setOtpSent(false);
@@ -200,9 +209,13 @@ const RegistrationForm = () => {
                         className={`bg-green-500 text-white px-4 py-2 mt-2 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600 ${
                             !formDataRegistration.email && "opacity-50 cursor-not-allowed"
                         }`}
-                        disabled={formDataRegistration.email==""}
+                        disabled={formDataRegistration.email==="" || sending}
                     >
-                        Send OTP
+                
+                        {
+                            sending ? "Sending" : "Send OTP"
+                        }
+                        
                     </button>
                 </div>
                 {otpSent && (
@@ -297,6 +310,40 @@ const RegistrationForm = () => {
                         value={formDataRegistration.address}
                         onChange={handleChange}
                         rows="3"
+                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label
+                        htmlFor="designation"
+                        className="block text-gray-700 text-xs"
+                    >
+                        Designation*
+                    </label>
+                    <input
+                        type="text"
+                        id="designation"
+                        name="designation"
+                        value={formDataRegistration.designation}
+                        onChange={handleChange}
+                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label
+                        htmlFor="organization"
+                        className="block text-gray-700 text-xs"
+                    >
+                        Organization*
+                    </label>
+                    <input
+                        type="text"
+                        id="organization"
+                        name="organization"
+                        value={formDataRegistration.organization}
+                        onChange={handleChange}
                         className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />

@@ -64,6 +64,7 @@ const ViewProduct = ({ params }) => {
             setImages(prod.data.images);
             setData(prod.data);
             setImg(prod.data.images[0]);
+            setQuantity(prod.data.moq)
             setRatingValue(Math.ceil(prod.data.rating));
             let c = 1;
             prod.data.productDetails.forEach((detail, index) => {
