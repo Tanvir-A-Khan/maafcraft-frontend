@@ -41,8 +41,8 @@ const Navbar = () => {
                 </button>
             </div>
             <div className={`bg-[#444444] text-center lg:flex mx-28 ${isMenuOpen ? "block" : "hidden"} lg:block`}>
-                <ul className="md:flex flex-wrap justify-start divide-x-2 divide-solid divide-y-2 divide-[#555555] *:px-[11px] *:py-[2px] *:text-[12px] *:uppercase *:font-extralight *:tracking-wide *:text-white items-center">
-                    <Link href="/" className="hover:bg-[#555555] duration-300 hover:cursor-pointer text-white bg-green-600">
+                <ul className="md:flex flex-wrap justify-start divide-x-2 *:text-xs *:font-semibold divide-solid divide-y-2 divide-[#555555] *:px-[11px] *:py-[2px] *:text-[12px] *:uppercase *:font-extralight *:tracking-wide *:text-white items-center">
+                    <Link href="/" className="hover:bg-[#555555]  duration-300 hover:cursor-pointer text-white bg-green-600">
                         <li>
                             <FontAwesomeIcon icon={faHome} className="text-white text-3xl w-5" />
                         </li>

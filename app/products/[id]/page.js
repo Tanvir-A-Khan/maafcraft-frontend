@@ -9,7 +9,6 @@ import toast, { Toaster } from "react-hot-toast";
 import ReactImageZoom from "react-image-zoom";
 import Rating from "react-rating";
 
-
 function DisplayOutput({ text }) {
     return (
         <div
@@ -20,27 +19,13 @@ function DisplayOutput({ text }) {
 function getTotalWeight(productDetails) {
     let totalWeight = 0;
     // Iterate through each product detail
-    productDetails.forEach(detail => {
+    productDetails.forEach((detail) => {
         // Extract the weight of the product from the detail
         const weight = parseFloat(detail.weight); // Assuming weight is in numeric format
         // Add the weight to the total
         totalWeight += weight;
     });
     return totalWeight;
-}
-
-function getTotalCBM(productDetails) {
-    let totalCbm = 1;
-    // Iterate through each product detail
-    productDetails.forEach(detail => {
-        // Extract the weight of the product from the detail
-        const height = parseFloat(detail.height); // Assuming weight is in numeric format
-        const width = parseFloat(detail.width); // Assuming weight is in numeric format
-        const length = parseFloat(detail.length); // Assuming weight is in numeric format
-        // Add the weight to the total
-        totalCbm += height*width*length;
-    });
-    return totalCbm;
 }
 
 const ViewProduct = ({ params }) => {
@@ -64,15 +49,15 @@ const ViewProduct = ({ params }) => {
             setImages(prod.data.images);
             setData(prod.data);
             setImg(prod.data.images[0]);
-            setQuantity(prod.data.moq)
+            setQuantity(prod.data.moq);
             setRatingValue(Math.ceil(prod.data.rating));
             let c = 1;
             prod.data.productDetails.forEach((detail, index) => {
                 console.log(`Product Detail ${index + 1}:`, detail);
                 c = c * detail.length * detail.height * detail.width;
             });
-            setTemp(c);
-            setCbm(c/100.0);
+            setTemp(c  / 1000000.0);
+            setCbm(c / 1000000.0);
             setLoading(false);
         };
 
@@ -80,8 +65,9 @@ const ViewProduct = ({ params }) => {
     }, []);
 
     const handleQuantity = (e) => {
-        if (e.target.value < data.moq) {
-            alert("Quantity Can not be "+data.moq);
+        console.log(e.target.value , data.moq);
+        if (Number(e.target.value) < Number(data.moq)) {
+            toast.error("Quantity Can not be less than " + data.moq)
             return;
         }
         setQuantity(e.target.value);
@@ -100,7 +86,6 @@ const ViewProduct = ({ params }) => {
         zoomPosition: "right",
     };
     const handleRating = (rate) => {
-        console.log(rate);
         setRatingValue(rate);
     };
     const { globalState, setGlobalState } = useStateContext();
@@ -110,37 +95,27 @@ const ViewProduct = ({ params }) => {
             const data = extractDataFromJWT(globalState);
             if (data) {
                 console.log(data);
-                setEmail(data.sub)
+                setEmail(data.sub);
             }
         }
     }, [globalState]);
 
-    const handleCheckout = async()=>{
-        if(email==""){
-            toast("Please Login First");
+    const handleAddCart = async () => {
+        if (email == "") {
+            toast.error("Please login first to add cart");
             return;
         }
 
-    }
-    const handleAddCart =async () => {
-
-        if(email==""){
-            toast("Please Login First");
-            return;
-        }
-
-
-        const res =  await addToCart({
+        const res = await addToCart({
             productName: data.item,
             image: images.at(0),
             weight: getTotalWeight(data.productDetails),
             cbm: cbm.toFixed(4),
             quantity: qunatity,
             email: email,
-            price:data.pricePerPiece
+            price: data.pricePerPiece,
         });
-        console.log(res);
-        toast(res?.message)
+        toast.success(res?.message);
     };
 
     if (loading) {
@@ -318,7 +293,7 @@ const ViewProduct = ({ params }) => {
                                                 />
                                             </td>
                                             <td>
-                                                {cbm.toFixed(1)} cm<sup>3</sup>{" "}
+                                                {cbm.toFixed(2)} m<sup>3</sup>{" "}
                                             </td>
                                             <td>{qunatity}</td>
                                         </tr>

@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import Marquee from "react-fast-marquee";
 import { useStateContext } from "../Context/AppContext";
 import { extractDataFromJWT } from "../auth";
+import SearchSection from "./SearchSection";
 
 export const Context = React.createContext();
 
@@ -69,11 +70,11 @@ const HeaderTop = () => {
     };
     return (
         <div className="w-full lg:block hidden">
-            <div className="md:flex justify-between h-auto md:px-28 bg-[#EFEFEF] py-2">
+            <div className="md:flex justify-between h-auto md:px-28 bg-[#EFEFEF]">
                 {/* <div >
                     <img src="/slogo.png" alt="logo"  width={150} />
                 </div> */}
-                <div className="hidden lg:flex flex-col items-center h-auto justify-center text-xs gap-2 text-red-600">
+                <div className="hidden lg:flex flex-col items-center justify-center text-xs gap-2 text-red-600">
                     <div>
                         <FontAwesomeIcon icon={faPhone} className="w-5" />
                         Hotline: +88 01942 257473
@@ -108,6 +109,7 @@ const HeaderTop = () => {
                     )}
                 </div>
             </div>
+            <SearchSection/>
             <div className="px-96 text-green-800 font-semibold">
                 <Marquee>
                     Maafcraft offers quality products, competitive prices, and

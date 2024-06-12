@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { getGalleryImages } from "../api/api"
 import Spinner from "../components/Spinner"
 import Link from "next/link"
+import ImageSlider from "../components/ImageSlider"
 
 // const images = [
 //     { src: "/products/1.jpg", aspect_ratio: 5/3 },
@@ -41,6 +42,7 @@ export default function MyGallery() {
     }
 
     return (
+        <>
         <div className="mx-2 lg:mx-28 bg-slate-200 my-2 p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
     {images.map((data, index) => (
         <Link href={"/products/" + data.productName} key={index}>
@@ -48,10 +50,13 @@ export default function MyGallery() {
                 src={data.src}
                 alt={data.productName}
                 className="w-full h-auto object-cover"
-            />
+                />
         </Link>
     ))}
+
 </div>
+    <ImageSlider images={images} />
+</>
 
     )
 }

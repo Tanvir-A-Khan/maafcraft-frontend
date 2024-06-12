@@ -35,7 +35,7 @@ const LandingMain = () => {
     return (
         <div className="md:flex md:justify-between h-[80%]  bg-white border-1 border-black">
             <AllCategories className="bg-slate-100" />
-            <div className=" bg-gray-200 md:w-[50%]">
+            <div className=" bg-gray-200 md:w-[60%]">
                 <Carousel />
             </div>
 

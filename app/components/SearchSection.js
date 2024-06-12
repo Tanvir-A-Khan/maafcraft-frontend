@@ -5,10 +5,10 @@ import React from "react";
 
 const SearchSection = () => {
   return (
-    <div className="flex-col flex lg:flex-row lg:mx-28 h-auto m-4 gap-3 items-center justify-center w-auto ">
-      <div className="hidden lg:flex justify-center gap-5 mb-3 lg:min-w-32 min-w-max hover:cursor-pointer">
-        <img src="/logo.jpg" alt="logo" className="h-8 lg:h-14  max-w-48" />
-      </div>
+    <div className="flex-col flex lg:flex-row lg:mx-28 gap-3 items-center justify-center w-auto ">
+      {/* <div className="hidden lg:flex justify-center gap-5 mb-3 lg:min-w-32 min-w-max hover:cursor-pointer"> */}
+        <img src="/slogo.png" alt="logo" width={150} />
+      {/* </div> */}
 
       <div className="flex justify-between h-10 border-2 border-green-600 ">
         <input

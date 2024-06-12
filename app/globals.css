@@ -2,3 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+.slide-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.each-slide {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+}
+
+.text-overlay {
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 0 0 10px 10px;
+}
+
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+}

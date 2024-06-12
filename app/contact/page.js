@@ -1,8 +1,11 @@
 "use client";
 import {
+    faBuilding,
     faEnvelope,
+    faGlobe,
     faIndustry,
     faLocationCrosshairs,
+    faMobileAlt,
     faPhone,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -26,44 +29,42 @@ const ContactForm = () => {
         }));
     };
 
-    const handleSubmit = async(e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle the form asubmission logic, possibly sending the data to a server
         const res = await addFeedBack({
             name: data.name,
             email: data.email,
             phone: data.phone,
-            message:data.comment
-        })
+            message: data.comment,
+        });
         console.log(res);
         setData({
             name: "",
             email: "",
             phone: "",
             comment: "",
-        })
+        });
         toast(res.message);
     };
 
     return (
-        <div className="lg:mx-28 mx-2">
-            <div className="container flex flex-wrap  flex-col lg:flex-row items-start mt-4 justify-center ">
-            <Toaster position="top-center" reverseOrder={true} />
-                {/* Form for leaving a message */}
-                <div className="w-full lg:w-[45%] bg-slate-100 p-4  m-2 rounded-xl">
-                    <h2 className="text-lg mb-5 font-semibold">
-                        LEAVE A MESSAGE
+        <div className="lg:mx-28 mx-4">
+            <div className="container flex flex-wrap flex-col lg:flex-row items-start mt-4 justify-center space-y-4 lg:space-y-0 lg:space-x-4">
+                <Toaster position="top-center" reverseOrder={true} />
+                <div className="w-full lg:w-[45%] bg-white p-6 shadow-lg rounded-xl">
+                    <h2 className="text-2xl mb-6 font-bold text-green-600">
+                        Leave a Message
                     </h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label
-                                className="block text-gray-700 text-xs font-bold"
+                                className="block text-gray-600 text-sm font-semibold mb-2"
                                 htmlFor="name"
                             >
                                 Name*
                             </label>
                             <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-xs text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="shadow appearance-none border rounded w-full py-3 px-4 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="name"
                                 type="text"
                                 placeholder="Your Name"
@@ -75,13 +76,13 @@ const ContactForm = () => {
                         </div>
                         <div className="mb-4">
                             <label
-                                className="block text-gray-700 text-xs font-bold"
+                                className="block text-gray-600 text-sm font-semibold mb-2"
                                 htmlFor="email"
                             >
                                 Email*
                             </label>
                             <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-xs text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="shadow appearance-none border rounded w-full py-3 px-4 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="email"
                                 type="email"
                                 placeholder="Your Email"
@@ -93,13 +94,13 @@ const ContactForm = () => {
                         </div>
                         <div className="mb-4">
                             <label
-                                className="block text-gray-700 text-xs font-bold"
+                                className="block text-gray-600 text-sm font-semibold mb-2"
                                 htmlFor="phone"
                             >
                                 Number Phone*
                             </label>
                             <input
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-xs text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="shadow appearance-none border rounded w-full py-3 px-4 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="phone"
                                 type="tel"
                                 placeholder="Your Phone Number"
@@ -110,66 +111,104 @@ const ContactForm = () => {
                         </div>
                         <div className="mb-6">
                             <label
-                                className="block text-gray-700 text-xs font-bold  "
+                                className="block text-gray-600 text-sm font-semibold mb-2"
                                 htmlFor="comment"
                             >
                                 Comment*
                             </label>
                             <textarea
-                                className="shadow appearance-none border rounded w-full py-2 px-3 text-xs  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                className="shadow appearance-none border rounded w-full py-3 px-4 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 id="comment"
                                 placeholder="Your message..."
                                 name="comment"
                                 value={data.comment}
                                 onChange={handleChange}
+                                rows="4"
                             />
                         </div>
                         <button
-                            className="bg-green-500 hover:bg-green-700 text-white font-bold 
-                            text-xs py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
                             type="submit"
                         >
                             Submit
                         </button>
                     </form>
                 </div>
-
-                {/* Contact details */}
-                <div className="w-full lg:w-[45%] bg-slate-100 p-4  m-2 rounded-xl">
-                    <h2 className="text-lg mb-5 font-semibold">
-                        CONTACT DETAIL
+                <div className="w-full lg:w-[45%] bg-white p-6 shadow-lg rounded-xl ">
+                    <h2 className="text-2xl mb-6 font-bold text-green-600">
+                        Contact Detail
                     </h2>
-                    <div className="mb-4">
+                    <div className="mb-4 w-full">
                         <p className="flex items-center text-gray-700 mb-3">
                             <FontAwesomeIcon
                                 icon={faEnvelope}
-                                className="text-xl p-4"
+                                className="text-xl pr-4"
                             />
-                            ecosourcedbd.com@gmail.com
+                            maafcraftbd@gmail.com
+                        </p>
+                        <p className="flex items-center text-gray-700 mb-3">
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                className="text-xl pr-4"
+                            />
+                            contact@maafcraft.com
+                        </p>
+                        <p className="flex items-center text-gray-700 mb-3">
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                className="text-xl pr-4"
+                            />
+                            maaf.trade@gmail.com
+                        </p>
+                        <p className="flex items-center text-gray-700 mb-3">
+                            <FontAwesomeIcon
+                                icon={faGlobe}
+                                className="text-xl pr-4"
+                            />
+                            <a href="http://www.maafcraft.com" className="hover:underline">
+                                www.maafcraft.com
+                            </a>
                         </p>
                         <p className="flex items-center text-gray-700 mb-3">
                             <FontAwesomeIcon
                                 icon={faPhone}
-                                className="text-xl p-4"
+                                className="text-xl pr-4"
                             />
                             +88 01942 257473
                         </p>
                         <p className="flex items-center text-gray-700 mb-3">
                             <FontAwesomeIcon
-                                icon={faIndustry}
-                                className="text-xl p-4"
+                                icon={faPhone}
+                                className="text-xl pr-4"
                             />
-                            Factory: South Debipur (Ranigonj), Ghoraghat,
-                            Dinajpur, Bangladesh
+                            +880 (02)9883301
                         </p>
-                        <p className="flex items-center text-gray-700">
+                        <p className="flex items-center text-gray-700 mb-3">
                             <FontAwesomeIcon
-                                icon={faLocationCrosshairs}
-                                className="text-xl p-4"
+                                icon={faMobileAlt}
+                                className="text-xl pr-4"
                             />
-                            Head office: Plot #111 (8th Floor), Road #13
-                            (Ranavola Avenue), Sector #10, Uttara Model Town,
-                            Bangladesh.
+                            +8801712801284, +8801727626490, +8801884159814
+                        </p>
+                        <p className="flex items-start text-gray-700 mb-3">
+                            <FontAwesomeIcon
+                                icon={faIndustry}
+                                className="text-xl pr-4"
+                            />
+                            <span className="text-justify">
+                                Factory: South Debipur (Ranigonj), Ghoraghat, Dinajpur, (post code- 5291), Bangladesh.<br />
+                                কারখানাঃ দক্ষিণ দেবীপুর (রানীগন্জ), ঘোড়াঘাট, দিনাজপুর, (পোস্ট কোড- ৫২৯১), বাংলাদেশ।
+                            </span>
+                        </p>
+                        <p className="flex items-start text-gray-700 mb-3">
+                            <FontAwesomeIcon
+                                icon={faBuilding}
+                                className="text-xl pr-4 "
+                            />
+                            <span className="text-justify">
+                                Corporate office: Plot #113 (8th Floor), Ranavola Avenue(Road #13), Sector #10, Uttara Model Town, Dhaka-1230, Bangladesh.<br />
+                                কর্পোরেট অফিস: প্লট #113 (৮ম তলা), রানাভোলা এভিনিউ (রোড #১৩), সেক্টর #১০, উত্তরা মডেল টাউন, ঢাকা-১২০, বাংলাদেশ।
+                            </span>
                         </p>
                     </div>
                 </div>

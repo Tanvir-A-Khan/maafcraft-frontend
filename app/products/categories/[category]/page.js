@@ -40,9 +40,9 @@ const AllProduct = ({ params }) => {
     if (loading) {
         return <Spinner />;
     }
-    if (!success) {
-        return <div>No product found</div>;
-    }
+    // if (products.length) {
+    //     return <div>No product found</div>;
+    // }
 
     return (
         <div className="flex md:mx-28 mx-4 my-3 justify-start gap-5">

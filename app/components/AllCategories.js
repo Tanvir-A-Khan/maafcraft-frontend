@@ -15,7 +15,7 @@ const AllCategories = () => {
 
     const handleMouseEnter = async (category, index) => {
         try {
-            setHeight(index*40)
+            setHeight(index*30)
             console.log(index*10);
             const categoriesResponse = await getAllTypes(`${category}Type`);
             setHoveredCategory(categoriesResponse.data);
@@ -67,7 +67,7 @@ const AllCategories = () => {
                     {categories.map((category, index) => (
                         <li
                             key={index}
-                            className=" h-[40px] flex items-center ps-3 border-2 border-transparent rounded-sm hover:font-semibold hover:bg-gray-200 hover:text-green-700"
+                            className=" h-[30px] flex items-center ps-3 border-2 border-transparent rounded-sm font-semibold hover:bg-gray-200 hover:text-green-700"
                             onClick={() => handleCategoryClick(category)}
                             onMouseEnter={() => handleMouseEnter(category,index)}
                         >
@@ -78,7 +78,7 @@ const AllCategories = () => {
 
                 {got && (
                     <ul 
-                        className={`absolute  bg-white w-full shadow-lg rounded hover:cursor-pointer z-40`}
+                        className={`absolute bg-white w-[300px] shadow-lg rounded hover:cursor-pointer z-40`}
                         style={{ left: "14rem", top:heigth }} // Adjust this value if needed to match your layout
                     >
                         <li className="p-2 mb-1 font-bold bg-slate-100 text-center">
@@ -87,7 +87,7 @@ const AllCategories = () => {
                         {hoveredCategory.map((item, index) => (
                             <li 
                                 key={index} 
-                                className=" h-[40px] flex items-center ps-3 border-2 border-transparent rounded-sm hover:font-semibold hover:bg-gray-200 hover:text-green-700"
+                                className=" h-[30px]  flex items-center ps-3 border-2 border-transparent rounded-sm font-semibold hover:bg-gray-200 hover:text-green-700"
                                 onClick={() => handleCategoryClick(item)}
                             >
                                 {"📜 "}{replaceUnderscoresWithSpaces(item)}
