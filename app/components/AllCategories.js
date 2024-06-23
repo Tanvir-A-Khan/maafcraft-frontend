@@ -4,6 +4,9 @@ import { getAllTypes } from "../api/api";
 import Spinner from "./Spinner";
 import { useRouter } from "next/navigation";
 
+export function replaceUnderscoresWithSpaces(inputString) {
+  return inputString.replace(/_/g, " ");
+}
 const AllCategories = () => {
   const router = useRouter();
   const [hoveredCategory, setHoveredCategory] = useState([]);
@@ -50,9 +53,6 @@ const AllCategories = () => {
     router.push(`/products/categories/${categoryName}`);
   };
 
-  function replaceUnderscoresWithSpaces(inputString) {
-    return inputString.replace(/_/g, " ");
-  }
 
   if (loading) {
     return <Spinner />;

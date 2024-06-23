@@ -3,16 +3,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { getAllTypes } from "../api/api";
+import { replaceUnderscoresWithSpaces } from "./AllCategories";
 
 const SearchSection = () => {
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const categoriesResponse = await getAllTypes("ProductType");
-        // console.log(categoriesResponse.data);
+        console.log(categoriesResponse.data);
         setCategories(categoriesResponse.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -23,7 +25,23 @@ const SearchSection = () => {
   }, []);
 
   const handleCategoryChange = (event) => {
+    console.log(event.target.value);
     setSelectedCategory(event.target.value);
+  };
+
+  const handleSearchInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const handleSearch = () => {
+    console.log("Search triggered for:", searchQuery, "in category:", selectedCategory);
+    // Add your search logic here
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
   };
 
   return (
@@ -37,6 +55,9 @@ const SearchSection = () => {
           type="text"
           placeholder="Search"
           className="ps-6 w-[100%] lg:w-[20rem]"
+          value={searchQuery}
+          onChange={handleSearchInputChange}
+          onKeyDown={handleKeyDown}
         />
 
         {/* Select dropdown for categories */}
@@ -45,19 +66,18 @@ const SearchSection = () => {
           id="language"
           value={selectedCategory}
           onChange={handleCategoryChange}
-          className="bg-gray-200 text-gray-500 w-2/5 text-[13px] hidden lg:block"
+          className="bg-slate-200 text-black w-2/5 text-[13px] lg:block"
         >
           <option value="">All Categories</option>
           {categories.map((category, index) => (
-            <option key={index} value={category} className="text-black">
-              {/* {console.log(category)} */}
-              {category.name}
+            <option key={index} value={category} className="p-4">
+              {replaceUnderscoresWithSpaces(category)}
             </option>
           ))}
         </select>
 
         {/* Search button */}
-        <div>
+        <div onClick={handleSearch}>
           <FontAwesomeIcon
             icon={faSearch}
             className="p-1 px-3 text-3xl text-white transition-all bg-green-600 hover:cursor-pointer hover:bg-green-800"
