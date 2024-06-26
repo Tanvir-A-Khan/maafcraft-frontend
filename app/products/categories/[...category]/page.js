@@ -13,8 +13,8 @@ const AllProduct = ({ params }) => {
     const [success, setSuccess] = useState(false);
     const pathname = usePathname();
 
-    const [page, setPage] = useState(1);
-    const [perPage, setPerPage] = useState(1);
+    const [page, setPage] = useState(0);
+    const [perPage, setPerPage] = useState(20);
     const [loading, setLoading] = useState(true);
     const [products, setProducts] = useState([]);
 
