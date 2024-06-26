@@ -19,7 +19,7 @@ const AllCategories = () => {
   const handleMouseEnter = async (category, index) => {
     try {
       setHeight(index * 30);
-      console.log(index * 10);
+      // console.log(index * 10);
       const categoriesResponse = await getAllTypes(`${category}Type`);
       setHoveredCategory(categoriesResponse.data);
       setMainCategory(category);
@@ -50,7 +50,8 @@ const AllCategories = () => {
   }, []);
 
   const handleCategoryClick = (categoryName) => {
-    router.push(`/products/categories/${categoryName}`);
+    if(categoryName === undefined) categoryName = '';
+    router.push(`/products/categories/${mainCategory}/${categoryName}`);
   };
 
 
@@ -68,7 +69,7 @@ const AllCategories = () => {
             <li
               key={index}
               className=" h-[30px] flex items-center ps-3 border-2 border-transparent rounded-sm font-semibold hover:bg-gray-200 hover:text-green-700"
-              onClick={() => handleCategoryClick(category)}
+              onClick={() => handleCategoryClick()}
               onMouseEnter={() => handleMouseEnter(category, index)}
             >
               {"📜 "} {replaceUnderscoresWithSpaces(category)}

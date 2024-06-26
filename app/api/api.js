@@ -128,10 +128,15 @@ export async function getAllProductsOfDashboardCategory(dashboard) {
 }
 
 export async function getAllProductsOfCategory(category, page, per_page) {
+    console.log(category);
     try {
         let req = '/products/get-all-by-category';
-        if (category != null)
-            req += `?page=${page}&per_page=${per_page}&category=${category}`;
+        if (category[0] != null)
+            req += `?page=${page}&per_page=${per_page}&category=${category[0]}`;
+
+        if(category[1] != null)
+            req += `&sub_category=${category[1]}`;
+        console.log(req);
         const response = await backend.get(req);
         return response.data;
     } catch (error) {
@@ -346,6 +351,18 @@ export async function updateDeliveryStatus(orderId,newStatus) {
         console.log("this is while calling ");
         const response = await backend.put(req);
         console.log(response.data);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
+
+export async function searchProducts(item, category, page, per_page) {
+    try {
+        console.log(item, category);
+        
+        let req = `products/get-all?page=${page}&per_page=${per_page}&item=${item}&category=${category}`;
+        const response = await backend.get(req);
         return response.data;
     } catch (error) {
         return error;

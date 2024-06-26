@@ -2,7 +2,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
-import { getAllTypes } from "../api/api";
+import { getAllTypes, searchProducts } from "../api/api";
 import { replaceUnderscoresWithSpaces } from "./AllCategories";
 
 const SearchSection = () => {
@@ -35,6 +35,11 @@ const SearchSection = () => {
 
   const handleSearch = () => {
     console.log("Search triggered for:", searchQuery, "in category:", selectedCategory);
+
+    searchProducts(searchQuery, selectedCategory, 0, 10)
+    .then((res) => {console.log(res);})
+    
+
     // Add your search logic here
   };
 

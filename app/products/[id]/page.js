@@ -127,8 +127,8 @@ const ViewProduct = ({ params }) => {
             <Toaster position="top-center" reverseOrder={true} />
             <div>
                 <div>
-                    <div className="md:mx-28 m-4 flex md:flex-row flex-col gap-8">
-                        <div className="w-auto  h-auto flex gap-4 items-start">
+                    <div className="flex flex-col gap-8 m-4 md:mx-28 md:flex-row">
+                        <div className="flex items-start w-auto h-auto gap-4">
                             <div className="flex flex-col justify-start gap-3 ">
                                 {/* Displaying the first image separately */}
                                 {images.map((image, index) => (
@@ -157,7 +157,7 @@ const ViewProduct = ({ params }) => {
                             </div>
                         </div>
                         <div className="">
-                            <h2 className="text-3xl pb-4 font-semibold">
+                            <h2 className="pb-4 text-3xl font-semibold">
                                 {data.item}
                             </h2>
                             <hr />
@@ -214,7 +214,7 @@ const ViewProduct = ({ params }) => {
                                     {data.leadTime}
                                 </p> */}
                                 {/* <!-- ... other product details ... --> */}
-                                <table className="border-2 border-gray-400 mt-3">
+                                <table className="mt-3 border-2 border-gray-400">
                                     <thead className="border-2 border-gray-400">
                                         <tr className="*:border-2 *:border-gray-400 *:p-2">
                                             <th>Details</th>
@@ -284,12 +284,12 @@ const ViewProduct = ({ params }) => {
                                                     )}
                                                 </div>
                                             </td>
-                                            <td className="flex flex-col border-none gap-3">
+                                            <td className="flex flex-col gap-3 border-none">
                                                 <input
                                                     type="number"
                                                     value={qunatity}
                                                     onChange={handleQuantity}
-                                                    className="text-center text-xl border-2 border-gray-400 h-20 w-20 "
+                                                    className="w-20 h-20 text-xl text-center border-2 border-gray-400 "
                                                 />
                                             </td>
                                             <td>
@@ -326,10 +326,10 @@ const ViewProduct = ({ params }) => {
                                         Rating: {data.rating}/5.0
                                     </strong>{" "}
                                 </div>
-                                <div className="flex gap-4 justify-left mt-4  ">
+                                <div className="flex gap-4 mt-4 justify-left ">
                                     <button
                                         type="button"
-                                        className="bg-green-600 rounded-md w-40 hover:bg-green-500 text-white px-4 py-2  text-xs transition-all"
+                                        className="w-40 px-4 py-2 text-xs text-white transition-all bg-green-600 rounded-md hover:bg-green-500"
                                         onClick={handleAddCart}
                                     >
                                         {" "}
@@ -337,14 +337,14 @@ const ViewProduct = ({ params }) => {
                                     </button>
                                     {/* <button
                                         type="button"
-                                        className="bg-green-950 rounded-md w-40 hover:bg-green-900 text-white px-4 py-2  text-xs transition-all"
+                                        className="w-40 px-4 py-2 text-xs text-white transition-all rounded-md bg-green-950 hover:bg-green-900"
                                         onClick={handleCheckout}
                                    >
                                         Checkout
                                     </button> */}
                                 </div>
 
-                                <p className="bg-green-100 p-4 mt-3 rounded-sm h-8 text-center">
+                                <p className="h-8 p-4 mt-3 text-center bg-green-100 rounded-sm">
                                     <strong className="text-slate-950">
                                         Note:
                                     </strong>{" "}
@@ -354,13 +354,13 @@ const ViewProduct = ({ params }) => {
                         </div>
                     </div>
                 </div>
-                <div className="md:mx-28 m-2">
-                    <h1 className="border-2 rounded-t-lg w-full px-4 py-1 font-semibold text-gray-600 hover:cursor-pointer">
+                <div className="m-2 md:mx-28">
+                    <h1 className="w-full px-4 py-1 font-semibold text-gray-600 border-2 rounded-t-lg hover:cursor-pointer">
                         {" "}
                         DESCRIPTION
                     </h1>
                     <hr />
-                    <div className="border-2 p-4">
+                    <div className="p-4 border-2">
                         <DisplayOutput text={data.description} />
 
                         {/* <p>DisplayOutput(text{data.description})</p> */}
