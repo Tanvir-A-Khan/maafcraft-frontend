@@ -138,6 +138,7 @@ export async function getAllProductsOfCategory(category, page, per_page) {
             req += `&sub_category=${category[1]}`;
         console.log(req);
         const response = await backend.get(req);
+        console.log(response);
         return response.data;
     } catch (error) {
         return error;
