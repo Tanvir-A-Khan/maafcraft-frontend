@@ -61,7 +61,7 @@ const SearchSection = () => {
         <input
           type="text"
           placeholder="Search"
-          className="ps-6 w-[100%] lg:w-[20rem]"
+          className="ps-3 w-[100%] lg:w-[20rem]"
           value={searchQuery}
           onChange={handleSearchInputChange}
           onKeyDown={handleKeyDown}

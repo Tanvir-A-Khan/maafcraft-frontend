@@ -55,18 +55,24 @@ const AllProduct = ({ params }) => {
                     {" "}
                     {"🖇️"} {pathname}{" "}
                 </h1>
-                <div className="flex flex-wrap justify-center gap-5 px-auto md:justify-start">
-                    {products.map((data, index) => (
-                        <Link href={`/products/${data.id}`} key={index}>
-                            <Product
-                                imageUrl={data.images[0]}
-                                productName={data.item}
-                                price={data.pricePerPiece}
-                                rating = {data.rating}
-                            />
-                        </Link>
-                    ))}
-                </div>
+                {products?.length > 0 ? (
+                    <div className="flex flex-wrap justify-center gap-5 md:justify-start">
+                        {products.map((data, index) => (
+                            <Link href={`/products/${data.id}`} key={index}>
+                                <Product
+                                    imageUrl={data.images[0]}
+                                    productName={data.item}
+                                    price={data.pricePerPiece}
+                                    rating={data.rating}
+                                />
+                            </Link>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex items-center justify-center w-full h-full text-xl text-gray-500 ps-10">
+                        No Product Found
+                    </div>
+                )}
             </div>
         </div>
     );
