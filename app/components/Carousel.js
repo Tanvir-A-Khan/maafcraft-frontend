@@ -34,7 +34,7 @@ const Carousel = () => {
         <div className="slide-container">
             <Slide autoplay={true}>
                 {data.map((item, index) => (
-                    <Link href={`/products/${item.item}`} key={index}>
+                    <Link href={`/products/${item.id}`} key={index}>
                         <div
                             className="each-slide"
                             style={{

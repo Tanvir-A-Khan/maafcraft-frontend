@@ -1,8 +1,9 @@
 "use client";
 import { useStateContext } from "@/app/Context/AppContext";
-import { addToCart, getAllProducts } from "@/app/api/api";
+import { addToCart, getAProduct, getAllProducts } from "@/app/api/api";
 import { extractDataFromJWT } from "@/app/auth";
 import Spinner from "@/app/components/Spinner";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -18,11 +19,8 @@ function DisplayOutput({ text }) {
 }
 function getTotalWeight(productDetails) {
     let totalWeight = 0;
-    // Iterate through each product detail
     productDetails.forEach((detail) => {
-        // Extract the weight of the product from the detail
-        const weight = parseFloat(detail.weight); // Assuming weight is in numeric format
-        // Add the weight to the total
+        const weight = parseFloat(detail.weight); 
         totalWeight += weight;
     });
     return totalWeight;
@@ -30,6 +28,7 @@ function getTotalWeight(productDetails) {
 
 const ViewProduct = ({ params }) => {
     const { id } = params;
+    console.log(params);
     const [loading, setLoading] = useState(true);
 
     const [ratingValue, setRatingValue] = useState(1);
@@ -45,7 +44,10 @@ const ViewProduct = ({ params }) => {
 
     useEffect(function () {
         const getProduct = async () => {
-            const prod = await getAllProducts(id, "", 1, 1);
+            const prod = await getAProduct(id);
+
+            console.log(prod);
+
             setImages(prod.data.images);
             setData(prod.data);
             setImg(prod.data.images[0]);
@@ -130,7 +132,6 @@ const ViewProduct = ({ params }) => {
                     <div className="flex flex-col gap-8 m-4 md:mx-28 md:flex-row">
                         <div className="flex items-start w-auto h-auto gap-4">
                             <div className="flex flex-col justify-start gap-3 ">
-                                {/* Displaying the first image separately */}
                                 {images.map((image, index) => (
                                     <div
                                         key={index}
@@ -152,7 +153,6 @@ const ViewProduct = ({ params }) => {
                                 ))}
                             </div>
                             <div className="mx-4 bg-black border-2 border-green-600">
-                                {/* <img src={img} alt="" /> */}
                                 <ReactImageZoom {...zoomProps} />
                             </div>
                         </div>
@@ -206,14 +206,7 @@ const ViewProduct = ({ params }) => {
                                     </strong>{" "}
                                     {data.moq}
                                 </p>
-
-                                {/* <p>
-                                    <strong className="text-slate-950">
-                                        Lead Time:
-                                    </strong>{" "}
-                                    {data.leadTime}
-                                </p> */}
-                                {/* <!-- ... other product details ... --> */}
+                              
                                 <table className="mt-3 border-2 border-gray-400">
                                     <thead className="border-2 border-gray-400">
                                         <tr className="*:border-2 *:border-gray-400 *:p-2">
@@ -297,7 +290,6 @@ const ViewProduct = ({ params }) => {
                                             </td>
                                             <td>{qunatity}</td>
                                         </tr>
-                                        {/* Add more rows as needed */}
                                     </tbody>
                                 </table>
                                 <div className="flex flex-col">
@@ -329,19 +321,13 @@ const ViewProduct = ({ params }) => {
                                 <div className="flex gap-4 mt-4 justify-left ">
                                     <button
                                         type="button"
-                                        className="w-40 px-4 py-2 text-xs text-white transition-all bg-green-600 rounded-md hover:bg-green-500"
+                                        className="w-40 px-4 py-2 text-sm font-bold text-white transition-all bg-green-500 rounded hover:bg-green-600"
                                         onClick={handleAddCart}
                                     >
                                         {" "}
-                                        Add To Cart
+                                        ADD TO CART
                                     </button>
-                                    {/* <button
-                                        type="button"
-                                        className="w-40 px-4 py-2 text-xs text-white transition-all rounded-md bg-green-950 hover:bg-green-900"
-                                        onClick={handleCheckout}
-                                   >
-                                        Checkout
-                                    </button> */}
+                                    <WhatsAppButton />
                                 </div>
 
                                 <p className="h-8 p-4 mt-3 text-center bg-green-100 rounded-sm">
@@ -362,8 +348,6 @@ const ViewProduct = ({ params }) => {
                     <hr />
                     <div className="p-4 border-2">
                         <DisplayOutput text={data.description} />
-
-                        {/* <p>DisplayOutput(text{data.description})</p> */}
                     </div>
                 </div>
             </div>

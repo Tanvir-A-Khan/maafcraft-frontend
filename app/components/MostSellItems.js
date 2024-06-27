@@ -40,7 +40,7 @@ const MostSellItems = () => {
                 <div className="flex p-2">
 
                 {data.map((data, index) => (
-                    <Link href={`/products/${data.item}`} key={index}>
+                    <Link href={`/products/${data.id}`} key={index}>
                         <Product
                             imageUrl={data.images}
                             productName={data.item}

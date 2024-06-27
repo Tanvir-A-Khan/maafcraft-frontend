@@ -1,5 +1,5 @@
 "use client";
-import { getAllProducts, getAllProductsOfCategory } from "@/app/api/api";
+import { getAllProducts, getAllProductsOfCategory, searchProducts } from "@/app/api/api";
 import AllCategories from "@/app/components/AllCategories";
 import Product from "@/app/components/Product";
 import Spinner from "@/app/components/Spinner";
@@ -9,7 +9,7 @@ import React, { useEffect, useState } from "react";
 
 const AllProduct = ({ params }) => {
     const { category } = params;
-    // console.log(category , subCategory);
+    console.log(category);
     const [success, setSuccess] = useState(false);
     const pathname = usePathname();
 
@@ -21,14 +21,17 @@ const AllProduct = ({ params }) => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const productsResponse = await getAllProductsOfCategory(
-                    category,
-                    page,
-                    perPage
-                );
-                setSuccess(productsResponse.result);
-                setProducts(productsResponse.data.data);
-                setLoading(false);
+                
+                searchProducts(
+                    category[0], category[1], 0, 20
+                ).then((res) => {
+                    
+                    setSuccess(res.result);
+                    setProducts(res.data.data);
+                    setLoading(false);
+
+                    console.log(res);
+                })
             } catch (error) {
                 console.error("Error fetching products:", error);
                 setLoading(false);
@@ -36,7 +39,7 @@ const AllProduct = ({ params }) => {
         }
 
         fetchData();
-    }, []);
+    }, [params[0], params[1]]);
 
     if (loading) {
         return <Spinner />;

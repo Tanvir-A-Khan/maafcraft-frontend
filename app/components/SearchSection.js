@@ -4,8 +4,10 @@ import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { getAllTypes, searchProducts } from "../api/api";
 import { replaceUnderscoresWithSpaces } from "./AllCategories";
+import { useRouter } from "next/navigation";
 
 const SearchSection = () => {
+  const router = useRouter();
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,10 +38,10 @@ const SearchSection = () => {
   const handleSearch = () => {
     console.log("Search triggered for:", searchQuery, "in category:", selectedCategory);
 
-    searchProducts(searchQuery, selectedCategory, 0, 10)
-    .then((res) => {console.log(res);})
+    // searchProducts(searchQuery, selectedCategory, 0, 10)
+    // .then((res) => {console.log(res);})
     
-
+    router.push(`/products/search/${searchQuery}/${selectedCategory}`);
     // Add your search logic here
   };
 
