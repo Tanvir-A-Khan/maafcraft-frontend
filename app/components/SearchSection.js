@@ -4,6 +4,7 @@ import { faShoppingCart, faSearch } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useState } from "react";
 import { getAllTypes, searchProducts } from "../api/api";
 import { replaceUnderscoresWithSpaces } from "./AllCategories";
+import Link from "next/link";
 
 const SearchSection = () => {
   const [categories, setCategories] = useState([]);
@@ -59,7 +60,7 @@ const SearchSection = () => {
         <input
           type="text"
           placeholder="Search"
-          className="ps-6 w-[100%] lg:w-[20rem]"
+          className="ps-2 w-[100%] lg:w-[20rem]"
           value={searchQuery}
           onChange={handleSearchInputChange}
           onKeyDown={handleKeyDown}
@@ -92,7 +93,7 @@ const SearchSection = () => {
 
       {/* Cart section */}
       <div className="items-center justify-center hidden h-12 mb-5 lg:flex">
-        <div>
+        <Link href="/cart">
           <h1 className="hidden font-semibold hover:cursor-pointer lg:block">
             CART
           </h1>
@@ -100,7 +101,7 @@ const SearchSection = () => {
             icon={faShoppingCart}
             className="w-10 text-back hover:cursor-pointer"
           />
-        </div>
+        </Link>
         <p className="items-center h-6 p-1 mt-5 text-xs font-semibold text-white bg-green-600 rounded-lg ms-1 hover:cursor-pointer">
           0 Items
         </p>
