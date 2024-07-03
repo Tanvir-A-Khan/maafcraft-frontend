@@ -33,17 +33,17 @@ const AllProductCat = () => {
     }
 
     return (
-        <div className="flex md:mx-28 mx-4 my-3 justify-start gap-5">
-            <div className="lg:block hidden bg-slate-50">
+        <div className="flex justify-start gap-5 mx-4 my-3 md:mx-28">
+            <div className="hidden lg:block bg-slate-50">
                 <AllCategories />
             </div>
                 
             <div>
-                <h1 className=" text-xs font-semibold pb-2"> {"🖇️"} {pathname} </h1>
+                <h1 className="pb-2 text-xs font-semibold "> {"🖇️"} {pathname} </h1>
 
-            <div className="px-auto flex flex-wrap md:justify-start justify-center gap-5">
+            <div className="flex flex-wrap justify-center gap-5 px-auto md:justify-start">
                 {products.map((data, index) => (
-                    <Link href={`/products/${data.item}`} key={index}>
+                    <Link href={`/products/${data.id}`} key={index}>
                         <Product
                             imageUrl={data.images[0]}
                             productName={data.item}

@@ -69,19 +69,19 @@ const HeaderTop = () => {
         // onSearchSelected(item);
     };
     return (
-        <div className="w-full lg:block hidden">
+        <div className="">
             <div className="md:flex justify-between h-auto md:px-28 bg-[#EFEFEF]">
                 {/* <div >
                     <img src="/slogo.png" alt="logo"  width={150} />
                 </div> */}
-                <div className="hidden lg:flex flex-col items-center justify-center text-xs gap-2 text-red-600">
+                <div className="flex-col items-center justify-center hidden gap-2 text-xs text-red-600 lg:flex">
                     <div>
                         <FontAwesomeIcon icon={faPhone} className="w-5" />
                         Hotline: +88 01942 257473
                     </div>
                   
                 </div>
-                    <p className="flex text-green-600 justify-center text-xl md:text-3xl font-semibold h-auto items-center">
+                    <p className="flex items-center justify-center h-auto text-xl font-semibold text-green-600 md:text-3xl">
                         MAAF Craft and Fashion
                     </p> 
                 {/* <div className="z-20 flex items-center">
@@ -97,20 +97,20 @@ const HeaderTop = () => {
                     </Link>
                 </div> */}
 
-                <div className="h-auto flex justify-center items-center gap-3 ">
+                <div className="flex items-center justify-center h-auto gap-3 ">
                     {globalState ? (
-                        <div className="flex w-40 justify-around text-xs text-slate-600">
+                        <div className="flex justify-around w-40 text-xs text-slate-600">
                             <button onClick={handleProfile} className="hover:font-bold">Profile</button>
                             <span> | </span> 
                             <button onClick={handleLogout} className="hover:font-bold" >Logout</button>
                         </div>
                     ) : (
-                        <Link href={"/registration"} className="hover:font-bold text-xs">Signup</Link>
+                        <Link href={"/registration"} className="text-xs hover:font-bold">Signup</Link>
                     )}
                 </div>
             </div>
             <SearchSection/>
-            <div className="px-96 text-green-800 font-semibold">
+            <div className="font-semibold text-green-800 px-96">
                 <Marquee>
                     Maafcraft offers quality products, competitive prices, and
                     on-time delivery.

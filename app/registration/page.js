@@ -160,7 +160,64 @@ const RegistrationForm = () => {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row justify-between mx-28">
+        <div className="flex flex-col justify-between lg:flex-row lg:mx-28">
+          
+            <form
+                onSubmit={handleLogin}
+                className="lg:w-[48%] my-6 p-6 bg-white rounded-lg shadow-lg"
+            >
+                <h2 className="text-2xl font-bold uppercase">
+                    Returning Customer
+                </h2>
+                <p>Login Here</p>
+                <hr />
+                <br />
+                <div className="mb-4">
+                    <label
+                        htmlFor="email"
+                        className="block text-xs text-gray-700"
+                    >
+                        Email
+                    </label>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formDataLogin.email}
+                        onChange={handleChangeLoginData}
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
+                        required
+                    />
+                </div>
+                <div className="mb-4">
+                    <label
+                        htmlFor="password"
+                        className="block text-xs text-gray-700"
+                    >
+                        Password
+                    </label>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        value={formDataLogin.password}
+                        onChange={handleChangeLoginData}
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
+                        required
+                    />
+                </div>
+                <button
+                    type="submit"
+                    className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600"
+                >
+                    Login
+                </button>
+                <p className="my-4 text-sm">
+                    <Link href="/forget-password">
+                        Forgot your password? Reset here
+                    </Link>
+                </p>
+            </form>
             <form
                 onSubmit={handleSubmit}
                 className="lg:w-[48%] my-6 p-6 bg-white rounded-lg shadow-lg"
@@ -173,7 +230,7 @@ const RegistrationForm = () => {
                 <div className="mb-4">
                     <label
                         htmlFor="name"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Name*
                     </label>
@@ -183,14 +240,14 @@ const RegistrationForm = () => {
                         name="name"
                         value={formDataRegistration.name}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         htmlFor="email"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Email*
                     </label>
@@ -200,7 +257,7 @@ const RegistrationForm = () => {
                         name="email"
                         value={formDataRegistration.email}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                     <button
@@ -222,7 +279,7 @@ const RegistrationForm = () => {
                     <div className="mb-4">
                         <label
                             htmlFor="otp"
-                            className="block text-gray-700 text-xs"
+                            className="block text-xs text-gray-700"
                         >
                             Enter OTP
                         </label>
@@ -234,11 +291,11 @@ const RegistrationForm = () => {
                             name="otp"
                             value={otp}
                             onChange={(e) => handleVerifyOtp(e)}
-                            className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                            className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                             />
                          <label
                             htmlFor="otp"
-                            className="flex items-center text-gray-700 text-3xl transition-all"
+                            className="flex items-center text-3xl text-gray-700 transition-all"
                         >
 
                             {(verified ?  "✅" : "❌" )}
@@ -250,7 +307,7 @@ const RegistrationForm = () => {
                 <div className="mb-4">
                     <label
                         htmlFor="phone"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Phone*
                     </label>
@@ -260,14 +317,14 @@ const RegistrationForm = () => {
                         name="phone"
                         value={formDataRegistration.phone}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         htmlFor="password"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Password*
                     </label>
@@ -277,14 +334,14 @@ const RegistrationForm = () => {
                         name="password"
                         value={formDataRegistration.password}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         htmlFor="linkedin"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Linkedin
                     </label>
@@ -294,13 +351,13 @@ const RegistrationForm = () => {
                         name="linkedin"
                         value={formDataRegistration.linkedin}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         htmlFor="address"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Address*
                     </label>
@@ -310,14 +367,14 @@ const RegistrationForm = () => {
                         value={formDataRegistration.address}
                         onChange={handleChange}
                         rows="3"
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         htmlFor="designation"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Designation*
                     </label>
@@ -327,14 +384,14 @@ const RegistrationForm = () => {
                         name="designation"
                         value={formDataRegistration.designation}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                 </div>
                 <div className="mb-4">
                     <label
                         htmlFor="organization"
-                        className="block text-gray-700 text-xs"
+                        className="block text-xs text-gray-700"
                     >
                         Organization*
                     </label>
@@ -344,7 +401,7 @@ const RegistrationForm = () => {
                         name="organization"
                         value={formDataRegistration.organization}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                 </div>
@@ -357,62 +414,6 @@ const RegistrationForm = () => {
                 >
                     Register
                 </button>
-            </form>
-            <form
-                onSubmit={handleLogin}
-                className="lg:w-[48%] my-6 p-6 bg-white rounded-lg shadow-lg"
-            >
-                <h2 className="text-2xl font-bold uppercase">
-                    Returning Customer
-                </h2>
-                <p>Login Here</p>
-                <hr />
-                <br />
-                <div className="mb-4">
-                    <label
-                        htmlFor="email"
-                        className="block text-gray-700 text-xs"
-                    >
-                        Email
-                    </label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formDataLogin.email}
-                        onChange={handleChangeLoginData}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
-                        required
-                    />
-                </div>
-                <div className="mb-4">
-                    <label
-                        htmlFor="password"
-                        className="block text-gray-700 text-xs"
-                    >
-                        Password
-                    </label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={formDataLogin.password}
-                        onChange={handleChangeLoginData}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
-                        required
-                    />
-                </div>
-                <button
-                    type="submit"
-                    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none focus:bg-green-600"
-                >
-                    Login
-                </button>
-                <p className="text-sm my-4">
-                    <Link href="/forget-password">
-                        Forgot your password? Reset here
-                    </Link>
-                </p>
             </form>
         </div>
     );

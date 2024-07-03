@@ -116,6 +116,17 @@ export async function getAllProducts(item, category, page, perPage) {
     }
 }
 
+export async function getAProduct(id) {
+    try {
+        let req = `/products/get-a-product?id=${id}`;
+        const response = await backend.get(req);
+        // console.log(response.data);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
+
 export async function getAllProductsOfDashboardCategory(dashboard) {
     try {
         let req = '/products/get-all-by-dashboard-view';
@@ -361,9 +372,10 @@ export async function updateDeliveryStatus(orderId,newStatus) {
 export async function searchProducts(item, category, page, per_page) {
     try {
         console.log(item, category);
-        
+        if(category == undefined ) category = "";
         let req = `products/get-all?page=${page}&per_page=${per_page}&item=${item}&category=${category}`;
         const response = await backend.get(req);
+        console.log(response.data);
         return response.data;
     } catch (error) {
         return error;

@@ -1,11 +1,11 @@
 "use client";
 import { useStateContext } from "@/app/Context/AppContext";
-import { addToCart, getAllProducts } from "@/app/api/api";
+import { addToCart, getAProduct } from "@/app/api/api";
 import { extractDataFromJWT } from "@/app/auth";
 import Spinner from "@/app/components/Spinner";
+import WhatsAppButton from "@/app/components/WhatsAppButton";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-
 import ReactImageZoom from "react-image-zoom";
 import Rating from "react-rating";
 
@@ -16,13 +16,11 @@ function DisplayOutput({ text }) {
         />
     );
 }
+
 function getTotalWeight(productDetails) {
     let totalWeight = 0;
-    // Iterate through each product detail
     productDetails.forEach((detail) => {
-        // Extract the weight of the product from the detail
-        const weight = parseFloat(detail.weight); // Assuming weight is in numeric format
-        // Add the weight to the total
+        const weight = parseFloat(detail.weight);
         totalWeight += weight;
     });
     return totalWeight;
@@ -31,43 +29,37 @@ function getTotalWeight(productDetails) {
 const ViewProduct = ({ params }) => {
     const { id } = params;
     const [loading, setLoading] = useState(true);
-
     const [ratingValue, setRatingValue] = useState(1);
-
     const [cbm, setCbm] = useState(1);
     const [temp, setTemp] = useState(1);
-    const [qunatity, setQuantity] = useState(1);
+    const [quantity, setQuantity] = useState(1);
     const [data, setData] = useState({});
     const [images, setImages] = useState([""]);
     const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
     const [img, setImg] = useState("");
 
-    useEffect(function () {
+    useEffect(() => {
         const getProduct = async () => {
-            const prod = await getAllProducts(id, "", 1, 1);
+            const prod = await getAProduct(id);
             setImages(prod.data.images);
             setData(prod.data);
             setImg(prod.data.images[0]);
             setQuantity(prod.data.moq);
             setRatingValue(Math.ceil(prod.data.rating));
             let c = 1;
-            prod.data.productDetails.forEach((detail, index) => {
-                console.log(`Product Detail ${index + 1}:`, detail);
-                c = c * detail.length * detail.height * detail.width;
+            prod.data.productDetails.forEach((detail) => {
+                c *= detail.length * detail.height * detail.width;
             });
-            setTemp(c  / 1000000.0);
+            setTemp(c / 1000000.0);
             setCbm(c / 1000000.0);
             setLoading(false);
         };
-
         getProduct();
-    }, []);
+    }, [id]);
 
     const handleQuantity = (e) => {
-        console.log(e.target.value , data.moq);
         if (Number(e.target.value) < Number(data.moq)) {
-            toast.error("Quantity Can not be less than " + data.moq)
+            toast.error("Quantity cannot be less than " + data.moq);
             return;
         }
         setQuantity(e.target.value);
@@ -81,37 +73,38 @@ const ViewProduct = ({ params }) => {
 
     const zoomProps = {
         width: 400,
-        zoomWidth: 500,
+        zoomWidth: 400,
         img: img,
         zoomPosition: "right",
     };
+
     const handleRating = (rate) => {
         setRatingValue(rate);
     };
-    const { globalState, setGlobalState } = useStateContext();
+
+    const { globalState } = useStateContext();
     const [email, setEmail] = useState("");
     useEffect(() => {
-        if ((globalState !== null) & (typeof globalState !== undefined)) {
+        if (globalState) {
             const data = extractDataFromJWT(globalState);
             if (data) {
-                console.log(data);
                 setEmail(data.sub);
             }
         }
     }, [globalState]);
 
     const handleAddCart = async () => {
-        if (email == "") {
-            toast.error("Please login first to add cart");
+        if (!email) {
+            toast.error("Please login first to add to cart");
             return;
         }
 
         const res = await addToCart({
             productName: data.item,
-            image: images.at(0),
+            image: images[0],
             weight: getTotalWeight(data.productDetails),
             cbm: cbm.toFixed(4),
-            quantity: qunatity,
+            quantity: quantity,
             email: email,
             price: data.pricePerPiece,
         });
@@ -123,248 +116,165 @@ const ViewProduct = ({ params }) => {
     }
 
     return (
-        <div className="flex justify-center">
+        <div className="flex flex-col items-center mx-4 md:mx-16 lg:mx-32">
             <Toaster position="top-center" reverseOrder={true} />
-            <div>
-                <div>
-                    <div className="flex flex-col gap-8 m-4 md:mx-28 md:flex-row">
-                        <div className="flex items-start w-auto h-auto gap-4">
-                            <div className="flex flex-col justify-start gap-3 ">
-                                {/* Displaying the first image separately */}
-                                {images.map((image, index) => (
-                                    <div
-                                        key={index}
-                                        className={`border-2 transition-all ${
-                                            index === selectedImageIndex
-                                                ? "border-green-500"
-                                                : ""
-                                        }`}
-                                    >
-                                        <img
-                                            src={image}
-                                            alt="Product Image"
-                                            onMouseOver={() =>
-                                                handleHover(image, index)
-                                            }
-                                            className=" object-cover w-[96px] border-transparent transition-all"
-                                        />
-                                    </div>
-                                ))}
+            <div className="flex flex-col w-full gap-8 mt-4 md:flex-row">
+                <div className="flex flex-col items-center gap-4 md:items-start">
+                    <div className="flex flex-row items-center gap-2 md:flex-col md:gap-4">
+                        {images.map((image, index) => (
+                            <div
+                                key={index}
+                                className={`border-2 transition-all cursor-pointer ${
+                                    index === selectedImageIndex
+                                        ? "border-green-500"
+                                        : "border-transparent"
+                                } rounded-md overflow-hidden`}
+                            >
+                                <img
+                                    src={image}
+                                    alt="Product Image"
+                                    onMouseOver={() => handleHover(image, index)}
+                                    className="object-cover w-16 h-16 md:w-24 md:h-24"
+                                />
                             </div>
-                            <div className="mx-4 bg-black border-2 border-green-600">
-                                {/* <img src={img} alt="" /> */}
-                                <ReactImageZoom {...zoomProps} />
-                            </div>
-                        </div>
-                        <div className="">
-                            <h2 className="pb-4 text-3xl font-semibold">
-                                {data.item}
-                            </h2>
-                            <hr />
-                            <div className="py-4 *:py-1 *:text-sm">
-                                <p>
-                                    <strong className="text-slate-950 ">
-                                        Name:
-                                    </strong>{" "}
-                                    {data.item}
-                                </p>
-                                <p>
-                                    <strong className="text-slate-950">
-                                        Model:
-                                    </strong>{" "}
-                                    {data.model}
-                                </p>
-                                <p>
-                                    <strong className="text-slate-950">
-                                        Materials:
-                                    </strong>{" "}
-                                    {data.materials}
-                                </p>
-
-                                <p>
-                                    <strong className="text-slate-950">
-                                        Technique:
-                                    </strong>{" "}
-                                    {data.technique}
-                                </p>
-                                <p>
-                                    <strong className="text-slate-950">
-                                        Color:
-                                    </strong>{" "}
-                                    {data.color}
-                                </p>
-                                <p>
-                                    <strong className="text-slate-950">
-                                        FOB Price/Pcs:
-                                    </strong>{" "}
-                                    {data.pricePerPiece}
-                                </p>
-
-                                <p>
-                                    <strong className="text-slate-950">
-                                        MOQ:
-                                    </strong>{" "}
-                                    {data.moq}
-                                </p>
-
-                                {/* <p>
-                                    <strong className="text-slate-950">
-                                        Lead Time:
-                                    </strong>{" "}
-                                    {data.leadTime}
-                                </p> */}
-                                {/* <!-- ... other product details ... --> */}
-                                <table className="mt-3 border-2 border-gray-400">
-                                    <thead className="border-2 border-gray-400">
-                                        <tr className="*:border-2 *:border-gray-400 *:p-2">
-                                            <th>Details</th>
-                                            <th>Quantity</th>
-                                            <th>Total CBM</th>
-                                            <th>Total Carton</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr className="*:border-2 *:border-gray-400 *:p-2 *:text-left">
-                                            <td>
-                                                <div>
-                                                    <tr className="*:border-2 *:border-gray-400 *:p-2">
-                                                        <th className="w-20">
-                                                            Size
-                                                        </th>
-                                                        <th className="w-10">
-                                                            L
-                                                        </th>
-                                                        <th className="w-10">
-                                                            W
-                                                        </th>
-                                                        <th className="w-10">
-                                                            H
-                                                        </th>
-                                                        <th className="w-10">
-                                                            Weight
-                                                        </th>
+                        ))}
+                    </div>
+                    <div className="z-50 hidden bg-black border-2 border-green-600 rounded-md md:block">
+                        <ReactImageZoom {...zoomProps} />
+                    </div>
+                    <div className="bg-black border-2 border-green-600 rounded-md md:hidden">
+                        <img src={img} alt="image"/>
+                    </div>
+                    
+                </div>
+                <div className="flex flex-col items-start w-full md:w-1/2">
+                    <h2 className="pb-4 text-2xl font-semibold md:text-3xl">
+                        {data.item}
+                    </h2>
+                    <hr className="w-full border-gray-400" />
+                    <div className="py-4 space-y-2 text-sm text-gray-700 md:space-y-4 md:text-base">
+                        <p>
+                            <strong>Name:</strong> {data.item}
+                        </p>
+                        <p>
+                            <strong>Model:</strong> {data.model}
+                        </p>
+                        <p>
+                            <strong>Materials:</strong> {data.materials}
+                        </p>
+                        <p>
+                            <strong>Technique:</strong> {data.technique}
+                        </p>
+                        <p>
+                            <strong>Color:</strong> {data.color}
+                        </p>
+                        <p>
+                            <strong>FOB Price/Pcs:</strong> {data.pricePerPiece}
+                        </p>
+                        <p>
+                            <strong>MOQ:</strong> {data.moq}
+                        </p>
+                        <table className="mt-3 border-2 border-gray-400 rounded-md">
+                            <thead className="border-b-2 border-gray-400">
+                                <tr>
+                                    <th className="p-2">Details</th>
+                                    <th className="p-2">Quantity</th>
+                                    <th className="p-2">Total CBM</th>
+                                    <th className="p-2">Total Carton</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td className="p-2">
+                                        <div>
+                                            <table className="w-full text-left">
+                                                <thead>
+                                                    <tr className="text-xs *:w-14">
+                                                        <th className="w-20">Size</th>
+                                                        <th className="w-10">L</th>
+                                                        <th className="w-10">W</th>
+                                                        <th className="w-10">H</th>
+                                                        <th className="w-10">Weight</th>
                                                     </tr>
+                                                </thead>
+                                                <tbody>
                                                     {data.productDetails.map(
                                                         (detail, index) => (
-                                                            <tr
-                                                                key="index"
-                                                                className="*:border-2 *:border-gray-400 *:p-2"
-                                                            >
-                                                                <td key={index}>
-                                                                    {
-                                                                        detail.productSize
-                                                                    }{" "}
-                                                                </td>
-                                                                <td>
-                                                                    {
-                                                                        detail.length
-                                                                    }
-                                                                    cm
-                                                                </td>
-                                                                <td>
-                                                                    {
-                                                                        detail.height
-                                                                    }
-                                                                    cm
-                                                                </td>
-                                                                <td>
-                                                                    {
-                                                                        detail.width
-                                                                    }
-                                                                    cm
-                                                                </td>
-                                                                <td>
-                                                                    {
-                                                                        detail.weight
-                                                                    }
-                                                                    gm
-                                                                </td>
+                                                            <tr key={index} className="text-xs *:w-14">
+                                                                <td>{detail.productSize}</td>
+                                                                <td>{detail.length} cm</td>
+                                                                <td>{detail.width} cm</td>
+                                                                <td>{detail.height} cm</td>
+                                                                <td>{detail.weight} gm</td>
                                                             </tr>
                                                         )
                                                     )}
-                                                </div>
-                                            </td>
-                                            <td className="flex flex-col gap-3 border-none">
-                                                <input
-                                                    type="number"
-                                                    value={qunatity}
-                                                    onChange={handleQuantity}
-                                                    className="w-20 h-20 text-xl text-center border-2 border-gray-400 "
-                                                />
-                                            </td>
-                                            <td>
-                                                {cbm.toFixed(2)} m<sup>3</sup>{" "}
-                                            </td>
-                                            <td>{qunatity}</td>
-                                        </tr>
-                                        {/* Add more rows as needed */}
-                                    </tbody>
-                                </table>
-                                <div className="flex flex-col">
-                                    <Rating
-                                        initialRating={ratingValue}
-                                        readonly
-                                        onClick={handleRating}
-                                        emptySymbol={
-                                            <img
-                                                src="/src/blackstar.png"
-                                                className="icon"
-                                                width={40}
-                                                height={40}
-                                            />
-                                        }
-                                        fullSymbol={
-                                            <img
-                                                src="/src/yellowstar.png"
-                                                className="icon"
-                                                width={40}
-                                                height={40}
-                                            />
-                                        }
-                                    />{" "}
-                                    <strong className="text-slate-950">
-                                        Rating: {data.rating}/5.0
-                                    </strong>{" "}
-                                </div>
-                                <div className="flex gap-4 mt-4 justify-left ">
-                                    <button
-                                        type="button"
-                                        className="w-40 px-4 py-2 text-xs text-white transition-all bg-green-600 rounded-md hover:bg-green-500"
-                                        onClick={handleAddCart}
-                                    >
-                                        {" "}
-                                        Add To Cart
-                                    </button>
-                                    {/* <button
-                                        type="button"
-                                        className="w-40 px-4 py-2 text-xs text-white transition-all rounded-md bg-green-950 hover:bg-green-900"
-                                        onClick={handleCheckout}
-                                   >
-                                        Checkout
-                                    </button> */}
-                                </div>
-
-                                <p className="h-8 p-4 mt-3 text-center bg-green-100 rounded-sm">
-                                    <strong className="text-slate-950">
-                                        Note:
-                                    </strong>{" "}
-                                    {data.remarks}
-                                </p>
-                            </div>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </td>
+                                    <td className="flex flex-col gap-3 p-2 border-none">
+                                        <input
+                                            type="number"
+                                            value={quantity}
+                                            onChange={handleQuantity}
+                                            className="w-20 h-12 text-lg text-center border-2 border-gray-400 rounded-md"
+                                        />
+                                    </td>
+                                    <td className="p-2">
+                                        {cbm.toFixed(2)} m<sup>3</sup>
+                                    </td>
+                                    <td className="p-2">{quantity}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div className="flex flex-col items-start">
+                            <Rating
+                                initialRating={ratingValue}
+                                readonly
+                                onClick={handleRating}
+                                emptySymbol={
+                                    <img
+                                        src="/src/blackstar.png"
+                                        className="icon"
+                                        width={40}
+                                        height={40}
+                                    />
+                                }
+                                fullSymbol={
+                                    <img
+                                        src="/src/yellowstar.png"
+                                        className="icon"
+                                        width={40}
+                                        height={40}
+                                    />
+                                }
+                            />
+                            <strong>Rating: {data.rating}/5.0</strong>
                         </div>
+                        <div className="flex flex-col gap-4 mt-4 md:flex-row">
+                            <button
+                                type="button"
+                                className="w-full px-4 py-2 text-sm font-bold text-white transition-all bg-green-500 rounded md:w-40 hover:bg-green-600"
+                                onClick={handleAddCart}
+                            >
+                                ADD TO CART
+                            </button>
+                            <WhatsAppButton />
+                        </div>
+                        <p className="h-8 p-1 my-2 mt-3 text-center bg-green-100 rounded">
+                            <strong>Note:</strong> {data.remarks}
+                        </p>
                     </div>
                 </div>
-                <div className="m-2 md:mx-28">
-                    <h1 className="w-full px-4 py-1 font-semibold text-gray-600 border-2 rounded-t-lg hover:cursor-pointer">
-                        {" "}
-                        DESCRIPTION
-                    </h1>
-                    <hr />
-                    <div className="p-4 border-2">
-                        <DisplayOutput text={data.description} />
-
-                        {/* <p>DisplayOutput(text{data.description})</p> */}
-                    </div>
+            </div>
+            <div className="w-full mt-8">
+                <div className="w-full px-4 py-2 font-semibold text-gray-600 bg-gray-200 border-2 rounded-t-lg hover:cursor-pointer">
+                    DESCRIPTION
+                </div>
+                <hr />
+                <div className="p-4 border-2 rounded-b-lg">
+                    <DisplayOutput text={data.description} />
                 </div>
             </div>
         </div>

@@ -20,13 +20,13 @@ import SearchSection from "./SearchSection";
 const NavBarPopOver = () => {
   return (
     <div>
-      <div className="flex justify-between md:px-28 lg:hidden  bg-slate-200 h-14">
+      <div className="flex justify-between md:px-28 lg:hidden bg-slate-200 h-14">
         {/* Hidden Navbar */}
-        <div className="lg:hidden flex items-center  ">
+        <div className="flex items-center lg:hidden ">
               <img
                 src="/logo.jpg"
                 alt="logo"
-                className=" ps-2 h-10  w-auto"
+                className="w-auto h-10  ps-2"
               />
             <SearchSection />
           
@@ -39,25 +39,25 @@ const NavBarPopOver = () => {
           }}
         >
           <PopoverHandler>
-            <Button className="text-3xl text-slate-900 mr-4 lg:hidden  hover:cursor-pointer ">
+            <Button className="mr-4 text-3xl text-slate-900 lg:hidden hover:cursor-pointer ">
               {" "}
               <FontAwesomeIcon icon={faBars} />
             </Button>
           </PopoverHandler>
-          <PopoverContent className="z-50 bg-slate-50 w-56 m-auto ">
+          <PopoverContent className="z-50 w-56 m-auto bg-slate-50 ">
             <ul className="z-50 *:rounded-md *:p-1 ">
               {/* Add FontAwesome icon to the first list item */}
-              <Link
+              {/* <Link
                 href="/"
                 className="hover:bg-[#555555] duration-300 hover:cursor-pointer text-white"
               >
                 <li>
                   <FontAwesomeIcon
                     icon={faHome}
-                    className="text-black text-xl "
+                    className="text-xl text-black "
                   />
                 </li>
-              </Link>
+              </Link> */}
               <Link
                 href={"/"}
                 className={`hover:bg-[#555555] duration-300 hover:cursor-pointer h-[100%] 
@@ -70,7 +70,7 @@ const NavBarPopOver = () => {
                 Cart
                 <FontAwesomeIcon
                   icon={faShoppingCart}
-                  className="text-back  hover:cursor-pointer text-xs "
+                  className="text-xs text-back hover:cursor-pointer "
                 />
               </Link>
               <Link

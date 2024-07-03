@@ -46,7 +46,7 @@ const LandingMain = () => {
 
           {data.map((item, index) => (
             <Link
-              href={`/products/${item.item}`}
+              href={`/products/${item.id}`}
               className="flex gap-4 mb-3 mr-2 hover:cursor-pointer hover:bg-gray-200"
               key={index}
             >

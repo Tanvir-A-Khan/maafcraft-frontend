@@ -96,7 +96,7 @@ const ForgetPasswordForm = () => {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row justify-center mx-28">
+        <div className="flex flex-col justify-center lg:flex-row lg:mx-28">
             <form
                 onSubmit={handleResetPassword}
                 className="lg:w-[48%] my-6 p-6 bg-white rounded-lg shadow-lg"
@@ -107,7 +107,7 @@ const ForgetPasswordForm = () => {
                 <hr />
                 <br />
                 <div className="mb-4">
-                    <label htmlFor="email" className="block text-gray-700 text-xs">
+                    <label htmlFor="email" className="block text-xs text-gray-700">
                         Email*
                     </label>
                     <input
@@ -116,7 +116,7 @@ const ForgetPasswordForm = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                        className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                         required
                     />
                     {
@@ -137,7 +137,7 @@ const ForgetPasswordForm = () => {
                 </div>
                 {otpSent && (
                     <div className="mb-4">
-                        <label htmlFor="otp" className="block text-gray-700 text-xs">
+                        <label htmlFor="otp" className="block text-xs text-gray-700">
                             Enter OTP
                         </label>
                         <div className="flex">
@@ -147,11 +147,11 @@ const ForgetPasswordForm = () => {
                                 name="otp"
                                 value={formData.otp}
                                 onChange={handleVerifyOtp}
-                                className="mt-1 px-4 py-2 w-full border rounded-md focus:outline-none focus:border-green-500"
+                                className="w-full px-4 py-2 mt-1 border rounded-md focus:outline-none focus:border-green-500"
                             />
                             <label
                                 htmlFor="otp"
-                                className="flex items-center text-gray-700 text-3xl transition-all"
+                                className="flex items-center text-3xl text-gray-700 transition-all"
                             >
                                 {verified ? "✅" : "❌"}
                             </label>
@@ -159,7 +159,7 @@ const ForgetPasswordForm = () => {
                     </div>
                 )}
                  <div className={`mb-4  ${!verified ? 'hidden' : ''}`}>
-                    <label htmlFor="password" className="block text-gray-700 text-xs">
+                    <label htmlFor="password" className="block text-xs text-gray-700">
                         New Password*
                     </label>
                     <input
