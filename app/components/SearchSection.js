@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { getAllTypes, searchProducts } from "../api/api";
 import { replaceUnderscoresWithSpaces } from "./AllCategories";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SearchSection = () => {
   const router = useRouter();
@@ -93,9 +94,9 @@ const SearchSection = () => {
       </div>
 
       {/* Cart section */}
-      <div className="items-center justify-center hidden h-12 mb-5 lg:flex">
+      <Link href={"/cart"} className="items-center justify-center hidden h-12 mb-5 lg:flex">
         <div>
-          <h1 className="hidden font-semibold hover:cursor-pointer lg:block">
+          <h1 className="hidden pt-5 text-xs font-semibold ps-1 hover:cursor-pointer lg:block">
             CART
           </h1>
           <FontAwesomeIcon
@@ -103,10 +104,10 @@ const SearchSection = () => {
             className="w-10 text-back hover:cursor-pointer"
           />
         </div>
-        <p className="items-center h-6 p-1 mt-5 text-xs font-semibold text-white bg-green-600 rounded-lg ms-1 hover:cursor-pointer">
+        {/* <p className="items-center h-6 p-1 mt-5 text-xs font-semibold text-white bg-green-600 rounded-lg ms-1 hover:cursor-pointer">
           0 Items
-        </p>
-      </div>
+        </p> */}
+      </Link>
     </div>
   );
 };
