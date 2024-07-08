@@ -134,7 +134,7 @@ const CartPage = () => {
                                         <td className="py-2">{item.weight * item.quantity} gm</td>
                                         <td className="py-2">{item.quantity}</td>
                                         <td className="py-2">{item.cbm * item.quantity} cm<sup>3</sup></td>
-                                        <td className="py-2">{item.price}Taka</td>
+                                        <td className="py-2">{item.price} $</td>
                                         <td className="py-2">
                                             <input
                                                 type="number"
