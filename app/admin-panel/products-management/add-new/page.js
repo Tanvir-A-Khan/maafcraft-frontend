@@ -3,7 +3,6 @@ import { addNewProduct, getAllTypes } from "@/app/api/api";
 import Spinner from "@/app/components/Spinner";
 import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-const SERVER_URL = process.env.NEXT_PUBLIC_SERVER_URL;
 function imageToBase64(image) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -153,21 +152,21 @@ const AddProductForm = () => {
     }
 
     return (
-        <div className="bg-white p-8 rounded shadow-md">
-            <p className="font-semibold text-2xl text-gray-800 mb-6 uppercase">
+        <div className="p-8 bg-white rounded shadow-md">
+            <p className="mb-6 text-2xl font-semibold text-gray-800 uppercase">
                 Add New Product
             </p>
             <Toaster position="top-center" reverseOrder={true} />
             <form
                 onSubmit={handleSubmit}
-                className="w-full flex flex-col gap-6"
+                className="flex flex-col w-full gap-6"
             >
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <div>
                         <div className="mb-4">
                             <label
                                 htmlFor="item"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Item:
                             </label>
@@ -184,7 +183,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="model"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Model:
                             </label>
@@ -201,7 +200,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="materials"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Materials:
                             </label>
@@ -218,7 +217,7 @@ const AddProductForm = () => {
 
                         {formData.productDetails.map((detail, index) => (
                             <div key={index} className="mb-4">
-                                <label className="block text-gray-700 mb-2">
+                                <label className="block mb-2 text-gray-700">
                                     Product Details {index + 1}:
                                 </label>
                                 <div className="flex gap-2 mb-2">
@@ -272,7 +271,7 @@ const AddProductForm = () => {
                                         onClick={handleRemoveProductDetails(
                                             index
                                         )}
-                                        className="bg-red-500 text-white p-2 rounded shadow-sm hover:bg-red-600 transition duration-300"
+                                        className="p-2 text-white transition duration-300 bg-red-500 rounded shadow-sm hover:bg-red-600"
                                     >
                                         Remove
                                     </button>
@@ -283,7 +282,7 @@ const AddProductForm = () => {
                         <button
                             type="button"
                             onClick={handleAddProductDetails}
-                            className="w-full bg-blue-500 text-white p-4 rounded shadow-sm hover:bg-blue-600 transition duration-300 mb-4"
+                            className="w-full p-4 mb-4 text-white transition duration-300 bg-blue-500 rounded shadow-sm hover:bg-blue-600"
                         >
                             Add More Details
                         </button>
@@ -291,7 +290,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="technique"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Technique:
                             </label>
@@ -309,7 +308,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="category"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Category:
                             </label>
@@ -317,7 +316,7 @@ const AddProductForm = () => {
                                 name="category"
                                 id="category"
                                 onChange={handleChange}
-                                className="w-full p-4 border rounded shadow-sm bg-white"
+                                className="w-full p-4 bg-white border rounded shadow-sm"
                                 required
                             >
                                 {categories.map((category, index) => (
@@ -330,7 +329,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="category"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Sub Category:
                             </label>
@@ -338,7 +337,7 @@ const AddProductForm = () => {
                                 name="subCategory"
                                 id="subCategory"
                                 onChange={handleChange}
-                                className="w-full p-4 border rounded shadow-sm bg-white"
+                                className="w-full p-4 bg-white border rounded shadow-sm"
                                 required
                             >
                                 {subCategories.map((category, index) => (
@@ -352,7 +351,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="dashboardView"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Dashboard View:
                             </label>
@@ -360,7 +359,7 @@ const AddProductForm = () => {
                                 name="dashboardView"
                                 id="dashboardView"
                                 onChange={handleChange}
-                                className="w-full p-4 border rounded shadow-sm bg-white"
+                                className="w-full p-4 bg-white border rounded shadow-sm"
                                 required
                             >
                                 {dashboard.map((item, index) => (
@@ -375,7 +374,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="color"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Color:
                             </label>
@@ -393,7 +392,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="pricePerPiece"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 FOB Price Per Piece:
                             </label>
@@ -411,7 +410,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="remarks"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Remarks:
                             </label>
@@ -429,7 +428,7 @@ const AddProductForm = () => {
                         <div className="mb-4">
                             <label
                                 htmlFor="moq"
-                                className="block text-gray-700 mb-2"
+                                className="block mb-2 text-gray-700"
                             >
                                 Minimum Order Quantity:
                             </label>
@@ -448,7 +447,7 @@ const AddProductForm = () => {
                             <div key={index} className="mb-4">
                                 <label
                                     htmlFor={`image-${index}`}
-                                    className="block text-gray-700 mb-2"
+                                    className="block mb-2 text-gray-700"
                                 >
                                     Image {index + 1}:
                                 </label>
@@ -464,7 +463,7 @@ const AddProductForm = () => {
                                 <button
                                     type="button"
                                     onClick={handleRemoveImageInput(index)}
-                                    className="bg-red-500 text-white p-2 rounded shadow-sm hover:bg-red-600 transition duration-300 mt-2"
+                                    className="p-2 mt-2 text-white transition duration-300 bg-red-500 rounded shadow-sm hover:bg-red-600"
                                 >
                                     Remove
                                 </button>
@@ -474,7 +473,7 @@ const AddProductForm = () => {
                         <button
                             type="button"
                             onClick={handleAddImageInput}
-                            className="w-full bg-blue-500 text-white p-4 rounded shadow-sm hover:bg-blue-600 transition duration-300"
+                            className="w-full p-4 text-white transition duration-300 bg-blue-500 rounded shadow-sm hover:bg-blue-600"
                         >
                             Add Image
                         </button>
@@ -483,7 +482,7 @@ const AddProductForm = () => {
                 <div className="mb-4">
                     <label
                         htmlFor="description"
-                        className="block text-gray-700 mb-2"
+                        className="block mb-2 text-gray-700"
                     >
                         Description:
                     </label>
@@ -499,7 +498,7 @@ const AddProductForm = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-full bg-green-500 text-white p-4 rounded shadow-sm hover:bg-green-600 transition duration-300"
+                    className="w-full p-4 text-white transition duration-300 bg-green-500 rounded shadow-sm hover:bg-green-600"
                 >
                     Add Product
                 </button>
