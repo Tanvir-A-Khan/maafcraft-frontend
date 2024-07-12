@@ -8,8 +8,9 @@ const ImageSlider = () => {
     const sliderRef = useRef(null);
     const intervalRef = useRef(null);
 
-    const [images, setImages] = useState([]);
-    const [loading, setLoading] = useState(true);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [scroll, setScroll] = useState(5);
 
     useEffect(() => {
         setLoading(true);

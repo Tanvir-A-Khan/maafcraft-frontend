@@ -48,11 +48,11 @@ const Navbar = () => {
         </button>
       </div>
       <div
-        className={`bg-gray-800 text-center lg:flex mx-10 lg:mx-28 ${
+        className={` bg-gray-800 text-center lg:flex mx-10 lg:mx-28 ${
           isMenuOpen ? "block" : "hidden"
         } lg:block`}
       >
-        <ul className="md:flex flex-wrap justify-start lg:divide-x-2 *:text-xs lg:divide-solid lg:divide-y-2 divide-[#555555] *:px-[11px] *:py-[2px] *:text-[12px] *:uppercase *:font-light *:tracking-wide *:text-white items-center">
+        <ul className=" sticky top-0 z-20 md:flex flex-wrap justify-start lg:divide-x-2 *:text-xs lg:divide-solid lg:divide-y-2 divide-[#555555] *:px-[11px] *:py-[2px] *:text-[12px] *:uppercase *:font-light *:tracking-wide *:text-white items-center">
           <Link
             href="/"
             className="hover:bg-[#555555] hidden lg:block  duration-300 hover:cursor-pointer text-white bg-green-600"

@@ -35,6 +35,10 @@ const CartPage = () => {
     // Mock data for cart items
 
     const handleQuantityChange = (itemId, newQuantity) => {
+        if (newQuantity < Number(data.moq)) {
+            toast.error("Quantity cannot be less than " + data.moq);
+            return;
+        }
         updateQuantity(itemId, newQuantity).then((res)=>{
             console.log("res",res);
             toast(res.message);
@@ -93,10 +97,10 @@ const CartPage = () => {
     }
 
     return (
-        <div className="mx-28 my-10 px-4">
+        <div className="px-4 my-10 mx-28">
         <Toaster position="top  -right" reverseOrder={true} />
-        <h2 className="text-3xl font-bold mb-6">Shopping Cart</h2>
-        <Link href={"/cart/order"} className="border-2 bg-green-600 rounded-lg mb-4 p-2">Your orders</Link>
+        <h2 className="mb-6 text-3xl font-bold">Shopping Cart</h2>
+        <Link href={"/cart/order"} className="p-2 mb-4 bg-green-600 border-2 rounded-lg">Your orders</Link>
         {!cartItems ? (
             <p>Your cart is empty.</p>
         ) : (
@@ -105,7 +109,7 @@ const CartPage = () => {
                     <>
                         <table className="w-full">
                             <thead>
-                                <tr className="border-b border-gray-300 text-xs">
+                                <tr className="text-xs border-b border-gray-300">
                                     <th className="py-2 text-start">Image</th>
                                     <th className="py-2 text-start">Name</th>
                                     <th className="py-2 text-start">Weight</th>
@@ -118,12 +122,12 @@ const CartPage = () => {
                             </thead>
                             <tbody>
                                 {cartItems.map((item) => (
-                                    <tr key={item.id} className="border-b text-xl border-gray-300">
+                                    <tr key={item.id} className="text-xl border-b border-gray-300">
                                         <td className="py-2">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
-                                                className="w-20 h-20 object-cover mr-4"
+                                                className="object-cover w-20 h-20 mr-4"
                                             />
                                         </td>
                                         <td className="py-2">{item.productName}</td>
@@ -142,7 +146,7 @@ const CartPage = () => {
                                                     )
                                                 }
                                                 min="1"
-                                                className="w-16 border border-gray-300 rounded py-1 px-2"
+                                                className="w-16 px-2 py-1 border border-gray-300 rounded"
                                             />
                                         </td>
                                         <td className="py-2">
@@ -157,7 +161,7 @@ const CartPage = () => {
                                 ))}
                             </tbody>
                         </table>
-                        <div className="mt-6 flex flex-col items-end">
+                        <div className="flex flex-col items-end mt-6">
                             <p className="text-xl font-bold">
                                 Total Amount:{" "}
                                 <span className="text-4xl">${totalAmount}</span>
@@ -165,9 +169,9 @@ const CartPage = () => {
 
                                 {
                                     taken && (
-                                        <div className="max-w-md bg-white shadow-lg rounded-lg overflow-hidden mt-10 p-6">
+                                        <div className="max-w-md p-6 mt-10 overflow-hidden bg-white rounded-lg shadow-lg">
                                         <div className="mb-4">
-                                          <label htmlFor="phone" className="block text-gray-700 font-semibold mb-2">Receiver Phone</label>
+                                          <label htmlFor="phone" className="block mb-2 font-semibold text-gray-700">Receiver Phone</label>
                                           <input
                                             type="tel"
                                             id="phone"
@@ -175,11 +179,11 @@ const CartPage = () => {
                                             onChange={(e) => setPhone(e.target.value)}
                                             min="1"
                                             required
-                                            className="w-full border border-gray-300 rounded py-2 px-3 text-gray-700"
+                                            className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded"
                                           />
                                         </div>
                                         <div className="mb-4">
-                                          <label htmlFor="address" className="block text-gray-700 font-semibold mb-2">Shipping Address</label>
+                                          <label htmlFor="address" className="block mb-2 font-semibold text-gray-700">Shipping Address</label>
                                           <input
                                             type="text"
                                             id="address"
@@ -187,11 +191,11 @@ const CartPage = () => {
                                             onChange={(e) => setAddress(e.target.value)}
                                             min="1"
                                             required
-                                            className="w-full border border-gray-300 rounded py-2 px-3 text-gray-700"
+                                            className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded"
                                           />
                                         </div>
                                         <div className="mb-4">
-                                          <label htmlFor="postcode" className="block text-gray-700 font-semibold mb-2">Post Code</label>
+                                          <label htmlFor="postcode" className="block mb-2 font-semibold text-gray-700">Post Code</label>
                                           <input
                                             type="text"
                                             id="postcode"
@@ -199,7 +203,7 @@ const CartPage = () => {
                                             onChange={(e) => setPostcode(e.target.value)}
                                             min="1"
                                             required
-                                            className="w-full border border-gray-300 rounded py-2 px-3 text-gray-700"
+                                            className="w-full px-3 py-2 text-gray-700 border border-gray-300 rounded"
                                           />
                                         </div>
                                       </div>
@@ -207,7 +211,7 @@ const CartPage = () => {
                                 }
 
                             <button 
-                                className="mt-4 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+                                className="px-4 py-2 mt-4 text-white bg-blue-500 rounded hover:bg-blue-600"
                                 onClick={handleCheckout}
                             >
                                 Proceed to Checkout
