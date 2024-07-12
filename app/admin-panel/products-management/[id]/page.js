@@ -1,5 +1,5 @@
 "use client";
-import { addNewProduct, getAllProducts, getAllTypes, updateProduct } from "@/app/api/api";
+import { addNewProduct, getAllProducts, getAllTypes, getAProduct, updateProduct } from "@/app/api/api";
 import Spinner from "@/app/components/Spinner";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -56,7 +56,7 @@ const EditProduct = ({ params }) => {
     };
 
     const getProds =async()=>{
-        const res = await getAllProducts(id, "", 1, 1);
+        const res = await getAProduct(id);
         console.log("data" , res.data);
         setFormData(res.data);
         

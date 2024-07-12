@@ -4,7 +4,7 @@ import { getOrder, makePayment } from "@/app/api/api";
 import Spinner from "@/app/components/Spinner";
 import { useEffect, useState } from "react";
 
-const TABLE_HEAD = ["Order ID", "Order Date", "Phone", "Address", "Post Code", "Total Amount", "Delivery Status", "Payment Status", "Actions"];
+const TABLE_HEAD = ["Order ID", "Order Date", "Phone", "Address", "Post Code", "Total Amount", "Delivery Status", "Payment Status"];
 function extractDateFromObjectId(objectId) {
     // Ensure the input is a valid ObjectId string
     if (typeof objectId !== 'string' || objectId.length !== 24) {
@@ -72,7 +72,7 @@ const FeedBack = () => {
                                 <td className="py-2 px-4 border-b border-gray-200">${order.totalAmount}</td>
                                 <td className="py-2 px-4 border-b border-gray-200">{order.deliveryStatus}</td>
                                 <td className="py-2 px-4 border-b border-gray-200">{order.paymentStatus}</td>
-                                <td className="py-2 px-4 border-b border-gray-200">
+                                {/* <td className="py-2 px-4 border-b border-gray-200">
                                     <button 
                                         className={`px-3 py-1 rounded text-white ${order.paymentStatus === "Paid" ? "bg-green-500" : "bg-blue-500 hover:bg-blue-700"}`} 
                                         disabled={order.paymentStatus === "Paid"} 
@@ -80,7 +80,7 @@ const FeedBack = () => {
                                     >
                                         {order.paymentStatus === "Paid" ? "Paid" : "Make Payment"}
                                     </button>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>

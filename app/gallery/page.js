@@ -44,7 +44,7 @@ export default function MyGallery() {
     <>
       <div className="grid grid-cols-2 gap-4 p-4 mx-2 my-2 lg:mx-28 bg-slate-200 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5">
         {images?.map((data, index) => (
-          <Link href={"/products/" + data.productName} key={index}>
+          <Link href={"/products/" + data.id} key={index}>
             <img
               src={data.src}
               alt={data.productName}

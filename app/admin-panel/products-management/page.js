@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, Typography } from "@material-tailwind/react";
@@ -18,7 +18,7 @@ const TABLE_HEAD = [
     "MOQ",
     "Description",
     "Edit",
-    "Delete"
+    "Delete",
 ];
 
 const ProductManagement = () => {
@@ -46,26 +46,31 @@ const ProductManagement = () => {
 
     const handleToggleDescription = (index) => {
         if (expandedRows.includes(index)) {
-            setExpandedRows(expandedRows.filter((rowIndex) => rowIndex !== index));
+            setExpandedRows(
+                expandedRows.filter((rowIndex) => rowIndex !== index)
+            );
         } else {
             setExpandedRows([...expandedRows, index]);
         }
     };
 
-    const handleDelete = async(id)=>{
+    const handleDelete = async (id) => {
         console.log("popped delete", id);
         const res = await deleteProduct(id);
         console.log(res);
         location.reload();
-    }
+    };
     return (
         <div className="py-8">
             <h1 className="text-3xl text-center font-bold mb-8 text-gray-800">
                 Product Management
             </h1>
 
-            <Link href="/admin-panel/products-management/add-new" className="bg-green-600 text-white py-2 px-4 rounded-lg inline-block font-semibold">
-                    Add New Product
+            <Link
+                href="/admin-panel/products-management/add-new"
+                className="bg-green-600 text-white py-2 px-4 rounded-lg inline-block font-semibold"
+            >
+                Add New Product
             </Link>
             <Card>
                 <h2 className="text-2xl mx-2  font-bold my-8 text-gray-800">
@@ -84,7 +89,10 @@ const ProductManagement = () => {
                         </thead>
                         <tbody>
                             {tableRows.map((row, index) => (
-                                <tr key={index} className="border-b border-gray-200">
+                                <tr
+                                    key={index}
+                                    className="border-b border-gray-200 "
+                                >
                                     <td className="py-4 px-4">{row.item}</td>
                                     <td className="py-4 px-4">
                                         <div className="flex">
@@ -99,26 +107,46 @@ const ProductManagement = () => {
                                         </div>
                                     </td>
                                     <td className="py-4 px-4">{row.model}</td>
-                                    <td className="py-4 px-4">{row.materials}</td>
+                                    <td className="py-4 px-4">
+                                        {row.materials}
+                                    </td>
                                     <td className="py-4 px-4">
                                         {row.productDetails &&
-                                            row.productDetails
-                                                .map(({ length, width, height, weight }, index) => (
-                                                    <span key={index} className="block">
+                                            row.productDetails.map(
+                                                (
+                                                    {
+                                                        length,
+                                                        width,
+                                                        height,
+                                                        weight,
+                                                    },
+                                                    index
+                                                ) => (
+                                                    <span
+                                                        key={index}
+                                                        className="block"
+                                                    >
                                                         {`${length}x${width}x${height} ${weight}g`}
                                                     </span>
-                                                ))}
+                                                )
+                                            )}
                                     </td>
-                                    <td className="py-4 px-4">{row.technique}</td>
+                                    <td className="py-4 px-4">
+                                        {row.technique}
+                                    </td>
                                     <td className="py-4 px-4">{row.color}</td>
-                                    <td className="py-4 px-4">${row.pricePerPiece}</td>
+                                    <td className="py-4 px-4">
+                                        ${row.pricePerPiece}
+                                    </td>
                                     <td className="py-4 px-4">{row.remarks}</td>
                                     <td className="py-4 px-4">{row.moq}</td>
                                     <td className="py-4 px-4 h-7">
                                         <div className="overflow-hidden">
                                             <div
                                                 className={`${
-                                                    expandedRows.includes(index) ? "block" : "h-7"
+                                                    expandedRows.includes(index)
+                                                        ? "block"
+                                                        : "h-7"
                                                 }`}
                                             >
                                                 <Typography
@@ -131,18 +159,42 @@ const ProductManagement = () => {
                                             </div>
                                             {row.description.length > 50 && (
                                                 <button
-                                                    className="text-white  font-semibold mt-5 px-3 bg-slate-400 focus:outline-none"
-                                                    onClick={() => handleToggleDescription(index)}
+                                                    className="text-white  font-semibold mt-5 px-3 bg-green-400 focus:outline-none"
+                                                    onClick={() =>
+                                                        handleToggleDescription(
+                                                            index
+                                                        )
+                                                    }
                                                 >
-                                                    {expandedRows.includes(index)
+                                                    {expandedRows.includes(
+                                                        index
+                                                    )
                                                         ? "See less"
                                                         : "See more"}
                                                 </button>
                                             )}
                                         </div>
                                     </td>
-                                    <td className="py-4 px-4">   <Link href={`/admin-panel/products-management/${row.item}`} key={index}>modify</Link></td>
-                                    <td className="py-4 px-4 hover:cursor-pointer" onClick={()=>handleDelete(row.id)}>  Delete </td>
+                                    <td className="py-4 px-4">
+                                        {" "}
+                                        <Link
+                                            href={`/admin-panel/products-management/${row.id}`}
+                                            key={index}
+                                        >
+                                            <span className="bg-blue-400 color-black p-2 text-white hover:bg-blue-600">
+                                            Modify
+                                            
+                                        </span>
+                                        </Link>
+                                    </td>
+                                    <td
+                                        className="py-4 px-4 hover:cursor-pointer "
+                                        onClick={() => handleDelete(row.id)}
+                                    >
+                                        <span className="bg-red-400 color-black p-2 text-white hover:bg-red-600">
+                                            Delete
+                                        </span>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

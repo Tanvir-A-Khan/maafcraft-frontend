@@ -28,6 +28,7 @@ function getTotalWeight(productDetails) {
 
 const ViewProduct = ({ params }) => {
     const { id } = params;
+    console.log(id);
     const [loading, setLoading] = useState(true);
     const [ratingValue, setRatingValue] = useState(1);
     const [cbm, setCbm] = useState(1);
