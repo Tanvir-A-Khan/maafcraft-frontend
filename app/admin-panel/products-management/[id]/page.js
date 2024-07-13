@@ -1,5 +1,5 @@
 "use client";
-import { getAllProducts, getAllTypes, updateProduct } from "@/app/api/api";
+import { getAllProducts, getAllTypes, getAProduct, updateProduct } from "@/app/api/api";
 import Spinner from "@/app/components/Spinner";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -54,7 +54,7 @@ const EditProduct = ({ params }) => {
         setSubCategories(categoriesResponse.data);
     };
 
-    const getProds =async()=>{
+    const getProds = async()=>{
         const res = await getAProduct(id);
         console.log("data" , res.data);
         setFormData(res.data);

@@ -9,7 +9,8 @@ import Product from "../components/Product";
 import { usePathname } from "next/navigation";
 
 const AllProductCat = () => {
-    const pathname = usePathname()
+    const pathname = usePathname();
+    const location = process.env.IMAGE_STORAGE_LOCATION;
     // const router = useRouter();
     console.log(pathname);
 
@@ -17,7 +18,7 @@ const AllProductCat = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        setLoading(true)
+        setLoading(true);
         async function fetchData() {
             const productsResponse = await getAllProducts();
             setProducts(productsResponse?.data?.data);
@@ -28,8 +29,7 @@ const AllProductCat = () => {
     }, []);
 
     if (loading || !products) {
-        return <Spinner />
-        
+        return <Spinner />;
     }
 
     return (
@@ -37,24 +37,26 @@ const AllProductCat = () => {
             <div className="hidden lg:block bg-slate-50">
                 <AllCategories />
             </div>
-                
-            <div>
-                <h1 className="pb-2 text-xs font-semibold "> {"🖇️"} {pathname} </h1>
 
-            <div className="flex flex-wrap justify-center gap-5 px-auto md:justify-start">
-                {products.map((data, index) => (
-                    <Link href={`/products/${data.id}`} key={index}>
-                        <Product
-                            imageUrl={data.images[0]}
-                            productName={data.item}
-                            price={data.pricePerPiece}
-                            rating={data.rating}
+            <div>
+                <h1 className="pb-2 text-xs font-semibold ">
+                    {" "}
+                    {"🖇️"} {pathname}{" "}
+                </h1>
+
+                <div className="flex flex-wrap justify-center gap-5 mx-auto md:justify-start">
+                    {products.map((data) => (
+                        <Link href={`/products/${data.id}`} key={data.id}>
+                            <Product
+                                imageUrl={`./product_image/${data.images[0]}`}
+                                productName={data.item}
+                                price={data.pricePerPiece}
+                                rating={data.rating}
                             />
-                    </Link>
-                ))}
-            </div>
-            
+                        </Link>
+                    ))}
                 </div>
+            </div>
         </div>
     );
 };

@@ -99,23 +99,24 @@ const SearchSection = () => {
             </div>
 
             {/* Cart section */}
-            <div className="items-center justify-center hidden h-12 mb-5 lg:flex">
-                <Link href="/cart">
-                    <div>
-                        <h1 className="hidden font-semibold hover:cursor-pointer lg:block">
-                            CART
-                        </h1>
-                        <FontAwesomeIcon
-                            icon={faShoppingCart}
-                            className="w-10 text-back hover:cursor-pointer"
-                        />
-                    </div>
 
-                    <p className="items-center h-6 p-1 mt-5 text-xs font-semibold text-white bg-green-600 rounded-lg ms-1 hover:cursor-pointer">
-                        0 Items
-                    </p>
-                </Link>
-            </div>
+
+
+            <Link
+                href="/cart"
+                className="items-center justify-center hidden  mb-5 lg:flex hover:cursor-pointer"
+            >
+                <div className="flex justify-center items-center mt-5">
+
+                <FontAwesomeIcon
+                    icon={faShoppingCart}
+                    className="text-3xl text-green-900 hover:text-green-700"
+                    />
+                </div>
+                {/* <span className="items-center h-6 p-1 text-xs font-semibold text-white bg-green-600 rounded-lg ms-1 hover:cursor-pointer">
+                    0
+                </span> */}
+            </Link>
         </div>
     );
 };

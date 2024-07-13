@@ -6,6 +6,7 @@ import Spinner from "./Spinner";
 import { getAllProductsOfDashboardCategory } from "../api/api";
 import Link from "next/link";
 import ImageSlider from "./ImageSlider";
+import { getUrl } from "../utils/service";
 
 const LandingMain = () => {
   const [data, setData] = useState([]);
@@ -51,7 +52,7 @@ const LandingMain = () => {
               key={index}
             >
               <img
-                src={item.images}
+                src={getUrl(item.images)}
                 alt="product"
                 className="h-[85px] w-[95px]  object-cover p-1"
               />

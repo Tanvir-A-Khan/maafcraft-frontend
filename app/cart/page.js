@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useStateContext } from "../Context/AppContext";
-import { getCartItem, makeOrder, makePayment, removeACart, updateQuantity } from "../api/api";
+import { getCartItem, makeOrder, removeACart, updateQuantity } from "../api/api";
 import toast, { Toaster } from "react-hot-toast";
 import { extractDataFromJWT } from "../auth";
 
@@ -100,7 +100,7 @@ const CartPage = () => {
         <div className="px-4 my-10 mx-28">
         <Toaster position="top  -right" reverseOrder={true} />
         <h2 className="mb-6 text-3xl font-bold">Shopping Cart</h2>
-        <Link href={"/cart/order"} className="p-2 mb-4 bg-green-600 border-2 rounded-lg">Your orders</Link>
+        {/* <Link href={"/cart/order"} className="p-2 mb-4 bg-green-600 border-2 rounded-lg">Your orders</Link> */}
         {!cartItems ? (
             <p>Your cart is empty.</p>
         ) : (
@@ -219,7 +219,7 @@ const CartPage = () => {
                         </div>
                     </>
                 ) : (
-                    <p>Your cart is empty</p>
+                    <p>Your cart is empty. Make sure you are <strong>Logged in</strong> </p>
                 )}
             </div>
         )}

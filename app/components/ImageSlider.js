@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Spinner from "./Spinner";
 import { getGalleryImages } from "../api/api";
+import { getUrl } from "../utils/service";
 
 const ImageSlider = () => {
     const sliderRef = useRef(null);
@@ -67,7 +68,7 @@ const ImageSlider = () => {
                             className="flex-shrink-0 transition transform hover:scale-95"
                         >
                             <img
-                                src={image.src}
+                                src={getUrl(image.src)}
                                 alt={image.productName}
                                 className="object-cover w-64 h-64"
                                 style={{ aspectRatio: image.aspect_ratio }}

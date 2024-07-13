@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Card, Typography } from "@material-tailwind/react";
 import { deleteProduct, getAllProducts } from "@/app/api/api";
 import { useRouter } from "next/navigation";
+import { getUrl } from "@/app/utils/service";
 
 const TABLE_HEAD = [
     "Item",
@@ -99,7 +100,7 @@ const ProductManagement = () => {
                                             {row.images.map((img, index) => (
                                                 <img
                                                     key={index}
-                                                    src={img}
+                                                    src={'../'+getUrl(img)}
                                                     alt="image"
                                                     className="w-12 h-12 object-cover rounded-full mr-2"
                                                 />

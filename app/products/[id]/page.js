@@ -4,6 +4,7 @@ import { addToCart, getAProduct } from "@/app/api/api";
 import { extractDataFromJWT } from "@/app/auth";
 import Spinner from "@/app/components/Spinner";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
+import { getUrl } from "@/app/utils/service";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ReactImageZoom from "react-image-zoom";
@@ -43,8 +44,9 @@ const ViewProduct = ({ params }) => {
         const getProduct = async () => {
             const prod = await getAProduct(id);
             setImages(prod.data.images);
+            // console.log(prod.data.images);
             setData(prod.data);
-            setImg(prod.data.images[0]);
+            setImg('../'+getUrl(prod.data.images[0]));
             console.log(prod.data.images[0]);
             setQuantity(prod.data.moq);
             setRatingValue(Math.ceil(prod.data.rating));
@@ -113,6 +115,8 @@ const ViewProduct = ({ params }) => {
         toast.success(res?.message);
     };
 
+
+
     if (loading) {
         return <Spinner />;
     }
@@ -122,8 +126,9 @@ const ViewProduct = ({ params }) => {
             <Toaster position="top-center" reverseOrder={true} />
             <div className="flex flex-col w-full gap-8 mt-4 md:flex-row">
                 <div className="flex flex-col items-center gap-4 md:items-start">
-                    <div className="flex flex-row items-center gap-2 md:flex-col md:gap-4">
+                    <div className="flex flex-col items-center gap-2 md:flex-col md:gap-4">
                         {images.map((image, index) => (
+                            // (console.log(image);
                             <div
                                 key={index}
                                 className={`border-2 transition-all cursor-pointer ${
@@ -133,9 +138,9 @@ const ViewProduct = ({ params }) => {
                                 } rounded-md overflow-hidden`}
                             >
                                 <img
-                                    src={image}
-                                    alt="Product Image"
-                                    onMouseOver={() => handleHover(image, index)}
+                                    src={'../'+getUrl(image)}
+                                    alt={getUrl(image)}
+                                    onMouseOver={() => handleHover('../'+getUrl(image), index)}
                                     className="object-cover w-16 h-16 md:w-24 md:h-24"
                                 />
                             </div>

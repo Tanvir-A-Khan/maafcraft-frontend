@@ -6,6 +6,7 @@ import { Slide } from "react-slideshow-image";
 import Spinner from "./Spinner";
 import { getAllProductsOfDashboardCategory } from "../api/api";
 import Link from "next/link";
+import { getUrl } from "../utils/service";
 
 const Carousel = () => {
     const [data, setData] = useState([]);
@@ -38,7 +39,7 @@ const Carousel = () => {
                         <div
                             className="each-slide"
                             style={{
-                                backgroundImage: `url(${item.images})`,
+                                backgroundImage: `url(${getUrl(item.images)})`,
                                 backgroundSize: "cover", // Set the background size to cover
                                 backgroundPosition: "center", // Center the background image
                                 backgroundRepeat: "no-repeat",
