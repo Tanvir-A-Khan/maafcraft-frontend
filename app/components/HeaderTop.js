@@ -34,8 +34,12 @@ const HeaderTop = () => {
     const router = useRouter();
     const handleProfile = () => {
         router.push("/profile");
-        // console.log(email);
     };
+    
+    const handleRoute = (route) => {
+        router.push(`/${route}`);
+
+    }
 
     const handleLogout = () => {    
         // console.log("loggingout ...");
@@ -70,7 +74,7 @@ const HeaderTop = () => {
     };
     return (
         <div className="">
-            <div className="md:flex justify-between h-auto md:px-28 bg-[#EFEFEF]">
+            <div className="sticky top-0 z-20 md:flex justify-between h-auto md:px-28 bg-[#EFEFEF]">
                 {/* <div >
                     <img src="/slogo.png" alt="logo"  width={150} />
                 </div> */}
@@ -99,7 +103,11 @@ const HeaderTop = () => {
 
                 <div className="flex items-center justify-center h-auto gap-3 ">
                     {globalState ? (
-                        <div className="flex justify-around w-40 text-xs text-slate-600">
+                        <div className="flex justify-around w-72 py-1 text-xs text-slate-600">
+                            <button onClick={()=>handleRoute("cart")} className="hover:font-bold">My Cart</button>
+                            <span> | </span> 
+                            <button onClick={()=>handleRoute("cart/order")} className="hover:font-bold">My Orders</button>
+                            <span> | </span> 
                             <button onClick={handleProfile} className="hover:font-bold">Profile</button>
                             <span> | </span> 
                             <button onClick={handleLogout} className="hover:font-bold" >Logout</button>
@@ -110,10 +118,10 @@ const HeaderTop = () => {
                 </div>
             </div>
             <SearchSection/>
-            <div className="font-semibold text-green-800 px-96 hidden md:block">
+            <div className="font-semibold text-green-800 w-72 md:w-auto py-2 mx-auto">
                 <Marquee>
                     Maafcraft offers quality products, competitive prices, and
-                    on-time delivery.
+                    on-time delivery. 
                 </Marquee>
             </div>
             

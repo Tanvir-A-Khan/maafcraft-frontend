@@ -97,7 +97,7 @@ const CartPage = () => {
     }
 
     return (
-        <div className="px-4 my-10 mx-28">
+        <div className="px-4 my-10 md:mx-28 mx-4">
         <Toaster position="top  -right" reverseOrder={true} />
         <h2 className="mb-6 text-3xl font-bold">Shopping Cart</h2>
         {/* <Link href={"/cart/order"} className="p-2 mb-4 bg-green-600 border-2 rounded-lg">Your orders</Link> */}
@@ -109,30 +109,30 @@ const CartPage = () => {
                     <>
                         <table className="w-full">
                             <thead>
-                                <tr className="text-xs border-b border-gray-300">
-                                    <th className="py-2 text-start">Image</th>
+                                <tr className="*:text-xs border-b border-gray-300">
+                                    <th className="py-2 text-start hidden md:block ">Image</th>
                                     <th className="py-2 text-start">Name</th>
                                     <th className="py-2 text-start">Weight</th>
-                                    <th className="py-2 text-start">Total Cartoon</th>
+                                    <th className="py-2 text-start  hidden md:block">Total Cartoon</th>
                                     <th className="py-2 text-start">Total CBM</th>
-                                    <th className="py-2 text-start">Price</th>
+                                    <th className="py-2 text-start ">Price</th>
                                     <th className="py-2 text-start">Quantity</th>
                                     <th className="py-2 text-start"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {cartItems.map((item) => (
-                                    <tr key={item.id} className="text-xl border-b border-gray-300">
-                                        <td className="py-2">
+                                    <tr key={item.id} className="*:text-xs border-b border-gray-300">
+                                        <td className="py-2  hidden md:block">
                                             <img
                                                 src={item.image}
                                                 alt={item.name}
                                                 className="object-cover w-20 h-20 mr-4"
                                             />
                                         </td>
-                                        <td className="py-2">{item.productName}</td>
+                                        <td className="py-1">{item.productName}</td>
                                         <td className="py-2">{item.weight * item.quantity} gm</td>
-                                        <td className="py-2">{item.quantity}</td>
+                                        <td className="py-2  hidden md:block">{item.quantity}</td>
                                         <td className="py-2">{item.cbm * item.quantity} cm<sup>3</sup></td>
                                         <td className="py-2">{item.price} $</td>
                                         <td className="py-2">
@@ -162,7 +162,7 @@ const CartPage = () => {
                             </tbody>
                         </table>
                         <div className="flex flex-col items-end mt-6">
-                            <p className="text-xl font-bold">
+                            <p className="text-sm font-bold">
                                 Total Amount:{" "}
                                 <span className="text-4xl">${totalAmount}</span>
                             </p>

@@ -144,7 +144,7 @@ const Navbar = () => {
               Contact
             </li>
           </Link>
-          {isAdmin && (
+          {/* {isAdmin && (
             <Link
               href="/admin-panel"
               className={`hover:bg-[#555555] duration-300 hover:cursor-pointer h-[100%] flex items-center ${
@@ -155,7 +155,7 @@ const Navbar = () => {
                 Admin Panel
               </li>
             </Link>
-          )}
+          )} */}
         </ul>
       </div>
     </div>

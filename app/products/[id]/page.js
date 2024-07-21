@@ -126,7 +126,7 @@ const ViewProduct = ({ params }) => {
             <Toaster position="top-center" reverseOrder={true} />
             <div className="flex flex-col w-full gap-8 mt-4 md:flex-row">
                 <div className="flex flex-col items-center gap-4 md:items-start">
-                    <div className="flex items-center gap-2 md:flex-col md:gap-4">
+                    <div className="flex items-center gap-2 md:flex-row md:gap-4">
                         {images.map((image, index) => (
                             // (console.log(image);
                             <div

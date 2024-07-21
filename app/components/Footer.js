@@ -88,9 +88,9 @@ const Footer = () => {
 
             {/* Lower Footer */}
             <div className="bg-gray-800 text-white py-4">
-                <div className="container mx-auto flex justify-between items-center px-4 md:px-28">
-                    <span>Copyright © 2024 Maafcraft.com - All rights reserved</span>
-                    <span>@Bangladesh</span>
+                <div className="container mx-auto flex justify-between text-xs items-center px-4 md:px-28">
+                    <p>Copyright © 2024 Maafcraft.com - All rights reserved</p>
+                    <p>@Bangladesh</p>
                 </div>
             </div>
         </div>

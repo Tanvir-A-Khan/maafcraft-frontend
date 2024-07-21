@@ -43,9 +43,9 @@ const Profile = () => {
     };
 
     return (
-        <div className="flex justify-center gap-10 *:mt-10">
-            <div className="max-w-md mb-4  mt-10 p-6 bg-white rounded-lg shadow-lg">
-                <h2 className="text-2xl font-bold text-center">Profile</h2>
+        <div className="flex justify-center gap-10 ">
+            <div className="w-96 mb-4  mt-10 p-6 bg-white rounded-lg shadow-lg">
+                <h2 className="text-2xl font-bold text-center">My Profile</h2>
                 <hr />
                 <Toaster position="top-center" reverseOrder={true} />
                 <div className="mb-4">
@@ -165,11 +165,11 @@ const Profile = () => {
                         }
                         className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
                     >
-                        {isEditing ? "Save" : "Edit"}
+                        {isEditing ? "Update Profile" : "Edit Profile"}
                     </button>
                 </div>
             </div>
-            <div>
+            {/* <div>
                 <p className="text-xl font-semibold text-orange-500 mb-4">Order History</p>
                 <hr/>
                 <div className="flex gap-10 mt-2">
@@ -184,7 +184,7 @@ const Profile = () => {
                     </Link>
                 </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { getOrder, makePayment } from "@/app/api/api";
 import Spinner from "@/app/components/Spinner";
 import { useEffect, useState } from "react";
 
-const TABLE_HEAD = ["Order ID", "Order Date", "Phone", "Address", "Post Code", "Total Amount", "Delivery Status", "Payment Status"];
+const TABLE_HEAD = ["Order ID", "Delivery Status", "Payment Status", "Order Date", "Phone", "Address", "Post Code", "Total Amount"];
 function extractDateFromObjectId(objectId) {
     // Ensure the input is a valid ObjectId string
     if (typeof objectId !== 'string' || objectId.length !== 24) {
@@ -39,13 +39,13 @@ const FeedBack = () => {
         console.log(res);
     }
 
+    if (!orders.length) {
+        return <div className="text-center mt-10 text-gray-500">No order history</div>;
+    }
     if (loading) {
         return <Spinner />;
     }
 
-    if (!orders.length) {
-        return <div className="text-center mt-10 text-gray-500">No order history</div>;
-    }
 
     return (
         <div className="max-w-6xl mx-auto mt-10 p-4 bg-white shadow-lg rounded-lg">
@@ -55,7 +55,7 @@ const FeedBack = () => {
                     <thead>
                         <tr>
                             {TABLE_HEAD.map((head) => (
-                                <th key={head} className="py-2 px-4 border-b border-gray-200 text-left text-gray-600 font-semibold">
+                                <th key={head} className="py-2 px-4 border-b border-gray-200 text-left text-gray-600 text-xs font-semibold">
                                     {head}
                                 </th>
                             ))}
@@ -63,15 +63,15 @@ const FeedBack = () => {
                     </thead>
                     <tbody>
                         {orders.map((order, index) => (
-                            <tr key={index} className="hover:bg-gray-50">
+                            <tr key={index} className="hover:bg-gray-50 text-xs">
                                 <td className="py-2 px-4 border-b border-gray-200">{order.id}</td>
+                                <td className="py-2 px-4 border-b border-gray-200">{order.deliveryStatus}</td>
+                                <td className="py-2 px-4 border-b border-gray-200">{order.paymentStatus}</td>
                                 <td className="py-2 px-4 border-b border-gray-200">{new Date(extractDateFromObjectId(order.id)).toLocaleDateString()}</td>
                                 <td className="py-2 px-4 border-b border-gray-200">{order.phone}</td>
                                 <td className="py-2 px-4 border-b border-gray-200">{order.address}</td>
                                 <td className="py-2 px-4 border-b border-gray-200">{order.postCode}</td>
                                 <td className="py-2 px-4 border-b border-gray-200">${order.totalAmount}</td>
-                                <td className="py-2 px-4 border-b border-gray-200">{order.deliveryStatus}</td>
-                                <td className="py-2 px-4 border-b border-gray-200">{order.paymentStatus}</td>
                                 {/* <td className="py-2 px-4 border-b border-gray-200">
                                     <button 
                                         className={`px-3 py-1 rounded text-white ${order.paymentStatus === "Paid" ? "bg-green-500" : "bg-blue-500 hover:bg-blue-700"}`} 
