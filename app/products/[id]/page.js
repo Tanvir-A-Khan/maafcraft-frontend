@@ -126,7 +126,7 @@ const ViewProduct = ({ params }) => {
             <Toaster position="top-center" reverseOrder={true} />
             <div className="flex flex-col w-full gap-8 mt-4 md:flex-row">
                 <div className="flex flex-col items-center gap-4 md:items-start">
-                    <div className="flex flex-col items-center gap-2 md:flex-col md:gap-4">
+                    <div className="flex items-center gap-2 md:flex-col md:gap-4">
                         {images.map((image, index) => (
                             // (console.log(image);
                             <div
@@ -149,6 +149,7 @@ const ViewProduct = ({ params }) => {
                     <div className="z-50 hidden bg-black border-2 border-green-600 rounded-md md:block">
                         <ReactImageZoom {...zoomProps} />
                     </div>
+                    {/* for smaller screen */}
                     <div className="bg-black border-2 border-green-600 rounded-md md:hidden">
                         <img src={img} alt="image"/>
                     </div>
