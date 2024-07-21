@@ -33,8 +33,8 @@ const AllProductCat = () => {
     }
 
     return (
-        <div className="flex justify-start gap-5 mx-4 my-3 md:mx-28">
-            <div className="hidden lg:block bg-slate-50">
+        <div className="flex md:flex-row flex-col justify-start gap-5 mx-4 my-3 md:mx-28">
+            <div className="bg-slate-50">
                 <AllCategories />
             </div>
 

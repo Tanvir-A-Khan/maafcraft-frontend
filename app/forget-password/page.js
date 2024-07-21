@@ -99,7 +99,7 @@ const ForgetPasswordForm = () => {
         <div className="flex flex-col justify-center lg:flex-row lg:mx-28">
             <form
                 onSubmit={handleResetPassword}
-                className="lg:w-[48%] my-6 p-6 bg-white rounded-lg shadow-lg"
+                className="lg:w-96 my-6 p-6 bg-white rounded-lg shadow-lg"
             >
                 <Toaster position="top-center" reverseOrder={true} />
                 <h2 className="text-2xl font-bold uppercase">Forget Password</h2>

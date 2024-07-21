@@ -30,12 +30,12 @@ const UserManagement = () => {
     }
 
     return (
-        <Card className="p-8">
-            <h1 className="text-2xl text-center my-4 uppercase font-bold mb-8">
+        <div className="flex flex-col justify-start items-center mx-4">
+            <h1 className="text-2xl my-4 uppercase font-bold mb-8">
                 User Management
             </h1>
-            <div className="overflow-x-auto">
-                <table className="w-full table-auto">
+            <div className="">
+                <table className="w-full ">
                     <thead>
                         <tr className="bg-blue-100">
                             {TABLE_HEAD.map((head) => (
@@ -136,7 +136,7 @@ const UserManagement = () => {
                     </tbody>
                 </table>
             </div>
-        </Card>
+        </div>
     );
 };
 

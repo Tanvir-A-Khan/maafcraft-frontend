@@ -3,6 +3,7 @@ import { getAllProducts, getAllProductsOfCategory, searchProducts } from "@/app/
 import AllCategories from "@/app/components/AllCategories";
 import Product from "@/app/components/Product";
 import Spinner from "@/app/components/Spinner";
+import { getUrl } from "@/app/utils/service";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -54,7 +55,7 @@ const AllProduct = ({ params }) => {
                         {products.map((data, index) => (
                             <Link href={`/products/${data.id}`} key={index}>
                                 <Product
-                                    imageUrl={data.images[0]}
+                                    imageUrl={`../../product_image/${data.images[0]}`}
                                     productName={data.item}
                                     price={data.pricePerPiece}
                                     rating={data.rating}

@@ -21,7 +21,7 @@ import Link from "next/link";
 const Footer = () => {
     return (
         <div className="bg-gray-100 mt-5 text-gray-700">
-            <div className="container mx-auto flex flex-wrap justify-between py-12 px-4 md:px-28 gap-1">
+            <div className=" mx-4 flex flex-wrap justify-between py-12 px-4 md:px-28 gap-1">
                
                 {/* Contact Info */}
                 <div className="w-full md:w-1/4 mb-8 md:mb-0">
@@ -87,9 +87,10 @@ const Footer = () => {
             </div>
 
             {/* Lower Footer */}
-            <div className="bg-gray-800 text-white py-4">
-                <div className="container mx-auto flex justify-between text-xs items-center px-4 md:px-28">
+            <div className="bg-[#444444] text-white py-4">
+                <div className="mx-auto flex justify-between gap-1 md:justify-center text-xs items-center px-4 md:px-28">
                     <p>Copyright © 2024 Maafcraft.com - All rights reserved</p>
+                    
                     <p>@Bangladesh</p>
                 </div>
             </div>

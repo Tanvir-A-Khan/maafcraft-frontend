@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-20 bg-gray-800">
+    <div className="sticky top-0 z-20 bg-[#444444]">
       <div className="flex items-center justify-between p-4 lg:hidden">
         <Link href="/" className="text-2xl text-white">
           <FontAwesomeIcon icon={faHome} />
@@ -48,7 +48,7 @@ const Navbar = () => {
         </button>
       </div>
       <div
-        className={` bg-gray-800 text-center lg:flex mx-10 lg:mx-28 ${
+        className={`bg-[#444444] text-center lg:flex mx-10 lg:mx-28 ${
           isMenuOpen ? "block" : "hidden"
         } lg:block`}
       >

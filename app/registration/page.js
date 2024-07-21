@@ -160,11 +160,11 @@ const RegistrationForm = () => {
     };
 
     return (
-        <div className="flex flex-col justify-between lg:flex-row lg:mx-28">
+        <div className="flex flex-col justify-center gap-10 lg:flex-row lg:mx-28">
           
             <form
                 onSubmit={handleLogin}
-                className="lg:w-[48%] my-6 p-6 bg-white rounded-lg shadow-lg"
+                className="lg:w-96 my-6 p-6 bg-white rounded-lg shadow-lg"
             >
                 <h2 className="text-2xl font-bold uppercase">
                     Returning Customer
@@ -220,7 +220,7 @@ const RegistrationForm = () => {
             </form>
             <form
                 onSubmit={handleSubmit}
-                className="lg:w-[48%] my-6 p-6 bg-white rounded-lg shadow-lg"
+                className="lg:w-96 my-6 p-6 bg-white rounded-lg shadow-lg"
             >
                 <Toaster position="top-center" reverseOrder={true} />
                 <h2 className="text-2xl font-bold uppercase">New Customer</h2>

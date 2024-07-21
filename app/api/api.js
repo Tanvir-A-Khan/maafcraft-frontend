@@ -46,7 +46,7 @@ export async function registerUser(userData) {
 
 export async function addNewProduct(formData) {
     try {
-        const response = await backend.post('/products/add-new', formData);
+        const response = await backend.post('/admin/products/add-new', formData);
         console.log(( response.data));      
         console.log(response.message); 
          return response.data;
@@ -58,7 +58,7 @@ export async function addNewProduct(formData) {
 
 export async function updateProduct(formData) {
     try {
-        const response = await backend.put('/products/update-product', formData);
+        const response = await backend.put('/admin/products/update-product', formData);
         console.log(( response.data));      
         console.log(response.message); 
         return response.data;
@@ -69,7 +69,7 @@ export async function updateProduct(formData) {
 }
 export async function deleteProduct(id) {
     try {
-        const response = await backend.delete('/products/delete-product?id='+id);
+        const response = await backend.delete('/admin/products/delete-product?id='+id);
         console.log(( response.data));      
         console.log(response.message); 
          return response.data;
@@ -106,6 +106,18 @@ export async function getAllTypes(type) {
 export async function getAllProducts(item, category, page, perPage) {
     try {
         let req = '/products/get-all';
+        if (item != null)
+            req += `?page=${page}&per_page=${perPage}&item=${item}&category=${category}`;
+        const response = await backend.get(req);
+        // console.log(response.data);
+        return response.data;
+    } catch (error) {
+        return error;
+    }
+}
+export async function getAllProductsAdmin(item, category, page, perPage) {
+    try {
+        let req = '/admin/products/get-all';
         if (item != null)
             req += `?page=${page}&per_page=${perPage}&item=${item}&category=${category}`;
         const response = await backend.get(req);

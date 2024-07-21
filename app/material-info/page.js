@@ -16,7 +16,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/1.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 ">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong className="text-xl bg-slate-100">Jute: </strong>
                       {" "}
                         Scientific name of Jute (Corchorus Olitorius). This
@@ -37,7 +37,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/2.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Kans Grass:  </strong>
                       {" "}
                       Scientific name of Kans Grass (Saccharum Spontaneum). This material can be used to prepare different types of baskets i.e. Storage, Laundry, Table mat, Planter, Tray, Coaster etc.
@@ -56,7 +56,7 @@ const MaterialInfo = () => {
                          productName="Basket!"
                     />
                     
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Date Leaf: </strong>
                       {" "}
                       Scientific name of Date Leaf (Phoenix Dactylifera). This material can be used to prepare different types of baskets i.e. Storage, Laundry, Table mat, Planter, Tray, Coaster etc
@@ -74,7 +74,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/4.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Rattan:</strong>
                       {" "}
                       Scientific name of Rattan (Calamus Tenuis). This material can be used to prepare different types of baskets i.e. Storage, Laundry, Table mat, Pet basket, Planter, Tray, Coaster, Stool, Furniture etc
@@ -92,7 +92,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/5.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Palm Fiber: </strong>
                       {" "}
                       Scientific name of Palm Fiber (Arecaceae). This material can be used to prepare different types of baskets i.e. Storage, Table mat, Planter, Coaster etc
@@ -110,7 +110,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/6.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Bamboo:</strong>
                       {" "}
                       Scientific name of Bamboo (Bambusa Vulgaris). This material can be used to prepare different types of baskets i.e. Storage, Laundry, Pet basket, Planter, Tray, Stool, Furniture etc.
@@ -128,7 +128,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/7.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Banana Fiber:</strong>
                       {" "}
                       Scientific name of Banana Fiber (Musa Sepientum). This material can be used to prepare different types of baskets i.e. Storage, Laundry, Door mat, Floor mat, Table mat, Planter, Coaster, Pouf etc
@@ -146,7 +146,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/8.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Corn Leaf:</strong>
                       {" "}
                       Scientific name of Corn Leaf (Maize). This material can be used to prepare different types of baskets i.e. Storage, Laundry, Door mat, Floor mat, Table mat, Planter, Coaster, Pouf etc
@@ -164,7 +164,7 @@ const MaterialInfo = () => {
                          imageUrl="./materials/9.jpg"
                          productName="Basket!"
                     />
-                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4">
+                    <p className="text-justify text-wrap w-full bg-slate-50 rounded-lg p-4 hover:scale-105 transition-all">
                     <strong>Water-hyacinth:</strong>
                       {" "}
                       Scientific name of Water-hyacinth (Eicssornia Crassipes). This material can be used to prepare different types of baskets i.e. Storage, Laundry, Door mat, Table mat, Planter, Pet basket, Coaster etc

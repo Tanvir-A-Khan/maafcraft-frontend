@@ -9,6 +9,8 @@ import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ReactImageZoom from "react-image-zoom";
 import Rating from "react-rating";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 function DisplayOutput({ text }) {
     return (
@@ -46,7 +48,7 @@ const ViewProduct = ({ params }) => {
             setImages(prod.data.images);
             // console.log(prod.data.images);
             setData(prod.data);
-            setImg('../'+getUrl(prod.data.images[0]));
+            setImg("../" + getUrl(prod.data.images[0]));
             console.log(prod.data.images[0]);
             setQuantity(prod.data.moq);
             setRatingValue(Math.ceil(prod.data.rating));
@@ -115,8 +117,6 @@ const ViewProduct = ({ params }) => {
         toast.success(res?.message);
     };
 
-
-
     if (loading) {
         return <Spinner />;
     }
@@ -126,6 +126,15 @@ const ViewProduct = ({ params }) => {
             <Toaster position="top-center" reverseOrder={true} />
             <div className="flex flex-col w-full gap-8 mt-4 md:flex-row">
                 <div className="flex flex-col items-center gap-4 md:items-start">
+                    <div className="z-2 hidden bg-black border-2 border-green-600 rounded-md md:block">
+                        <ReactImageZoom {...zoomProps} />
+                    </div>
+                    {/* for smaller screen */}
+                    <Zoom>
+                        <div className="bg-black  border-green-600 md:hidden">
+                            <img src={img} alt="image" />
+                        </div>
+                    </Zoom>
                     <div className="flex items-center gap-2 md:flex-row md:gap-4">
                         {images.map((image, index) => (
                             // (console.log(image);
@@ -135,25 +144,22 @@ const ViewProduct = ({ params }) => {
                                     index === selectedImageIndex
                                         ? "border-green-500"
                                         : "border-transparent"
-                                } rounded-md overflow-hidden`}
+                                } overflow-hidden`}
                             >
                                 <img
-                                    src={'../'+getUrl(image)}
+                                    src={"../" + getUrl(image)}
                                     alt={getUrl(image)}
-                                    onMouseOver={() => handleHover('../'+getUrl(image), index)}
+                                    onMouseOver={() =>
+                                        handleHover(
+                                            "../" + getUrl(image),
+                                            index
+                                        )
+                                    }
                                     className="object-cover w-16 h-16 md:w-24 md:h-24"
                                 />
                             </div>
                         ))}
                     </div>
-                    <div className="z-50 hidden bg-black border-2 border-green-600 rounded-md md:block">
-                        <ReactImageZoom {...zoomProps} />
-                    </div>
-                    {/* for smaller screen */}
-                    <div className="bg-black border-2 border-green-600 rounded-md md:hidden">
-                        <img src={img} alt="image"/>
-                    </div>
-                    
                 </div>
                 <div className="flex flex-col items-start w-full md:w-1/2">
                     <h2 className="pb-4 text-2xl font-semibold md:text-3xl">
@@ -198,22 +204,59 @@ const ViewProduct = ({ params }) => {
                                             <table className="w-full text-left">
                                                 <thead>
                                                     <tr className="text-xs *:w-14">
-                                                        <th className="w-20">Size</th>
-                                                        <th className="w-10">L</th>
-                                                        <th className="w-10">W</th>
-                                                        <th className="w-10">H</th>
-                                                        <th className="w-10">Weight</th>
+                                                        <th className="w-20">
+                                                            Size
+                                                        </th>
+                                                        <th className="w-10">
+                                                            L
+                                                        </th>
+                                                        <th className="w-10">
+                                                            W
+                                                        </th>
+                                                        <th className="w-10">
+                                                            H
+                                                        </th>
+                                                        <th className="w-10">
+                                                            Weight
+                                                        </th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     {data.productDetails.map(
                                                         (detail, index) => (
-                                                            <tr key={index} className="text-xs *:w-14">
-                                                                <td>{detail.productSize}</td>
-                                                                <td>{detail.length} cm</td>
-                                                                <td>{detail.width} cm</td>
-                                                                <td>{detail.height} cm</td>
-                                                                <td>{detail.weight} gm</td>
+                                                            <tr
+                                                                key={index}
+                                                                className="text-xs *:w-14"
+                                                            >
+                                                                <td>
+                                                                    {
+                                                                        detail.productSize
+                                                                    }
+                                                                </td>
+                                                                <td>
+                                                                    {
+                                                                        detail.length
+                                                                    }{" "}
+                                                                    cm
+                                                                </td>
+                                                                <td>
+                                                                    {
+                                                                        detail.width
+                                                                    }{" "}
+                                                                    cm
+                                                                </td>
+                                                                <td>
+                                                                    {
+                                                                        detail.height
+                                                                    }{" "}
+                                                                    cm
+                                                                </td>
+                                                                <td>
+                                                                    {
+                                                                        detail.weight
+                                                                    }{" "}
+                                                                    gm
+                                                                </td>
                                                             </tr>
                                                         )
                                                     )}
@@ -260,17 +303,17 @@ const ViewProduct = ({ params }) => {
                             />
                             <strong>Rating: {data.rating}/5.0</strong>
                         </div>
-                        <div className="flex flex-col gap-4 mt-4 md:flex-row">
+                        <div className="flex gap-4 mt-4 flex-row">
                             <button
                                 type="button"
-                                className="w-full px-4 py-2 text-sm font-bold text-white transition-all bg-green-500 rounded md:w-40 hover:bg-green-600"
+                                className="w-44 px-4 py-2 text-sm font-bold text-white transition-all bg-orange-500 rounded md:w-40 hover:bg-green-600"
                                 onClick={handleAddCart}
                             >
                                 ADD TO CART
                             </button>
                             <WhatsAppButton />
                         </div>
-                        <p className="h-8 p-1 my-2 mt-3 text-center bg-green-100 rounded">
+                        <p className="text-wrap text-left p-2 my-2 mt-3 bg-green-100 rounded">
                             <strong>Note:</strong> {data.remarks}
                         </p>
                     </div>

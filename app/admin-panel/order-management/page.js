@@ -26,6 +26,7 @@ function extractDateFromObjectId(objectId) {
 const FeedBack = () => {
     const { token } = useStateContext();
     const [orders, setOrders] = useState([]);
+    const [working, setWorking] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -37,12 +38,15 @@ const FeedBack = () => {
     }, [token]);
 
     const handlePayment = async (order) => {
+        setWorking(true);
         const res = await makePayment(order);
         location.replace(res.data.url);
         console.log(res);
+        setWorking(false);
     }
     const handleStatusChange = async(orderId, newStatus) => {
         try {
+            setWorking(true);
             const res = await updateDeliveryStatus(orderId, newStatus);
             toast(res.message);
             // Update the order status locally
@@ -51,14 +55,19 @@ const FeedBack = () => {
                     order.id === orderId ? { ...order, deliveryStatus: newStatus } : order
                 )
             );
-    
+            
             // Log the change
             console.log(`Order ID ${orderId} delivery status changed to ${newStatus}`);
         } catch (error) {
             console.error('Failed to update delivery status', error);
         }
+        setWorking(false);
     };
     
+
+    if(working){
+        return "updating data"
+    }
 
     if (loading) {
         return <Spinner />;
@@ -69,7 +78,7 @@ const FeedBack = () => {
     }
 
     return (
-        <div className="max-w-6xl mx-auto mt-10 p-4 bg-white shadow-lg rounded-lg">
+        <div className="mx-auto mt-10 p-4 bg-white shadow-lg rounded-lg">
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Order History</h2>
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white">
@@ -109,7 +118,7 @@ const FeedBack = () => {
                                 <td className="py-2 px-4 border-b border-gray-200">
                                     <button
                                         className={`px-3 py-1 rounded text-white ${order.paymentStatus === "Paid" ? "bg-green-500" : "bg-blue-500 hover:bg-blue-700"}`}
-                                        disabled={true}
+                                        // disabled={true}
                                         onClick={() => handlePayment(order)}
                                     >
                                         {order.paymentStatus === "Paid" ? "Paid" : "Not Paid"}

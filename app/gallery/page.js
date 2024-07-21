@@ -49,7 +49,7 @@ export default function MyGallery() {
             <img
               src={getUrl(data.src)}
               alt={data.productName}
-              className="object-cover w-full h-auto"
+              className="object-cover w-full h-auto hover:scale-105 transition-all"
             />
           </Link>
         ))}

@@ -5,6 +5,7 @@ import { useStateContext } from "../Context/AppContext";
 import { getCartItem, makeOrder, removeACart, updateQuantity } from "../api/api";
 import toast, { Toaster } from "react-hot-toast";
 import { extractDataFromJWT } from "../auth";
+import { getUrl } from "../utils/service";
 
 const CartPage = () => {
 
@@ -113,7 +114,7 @@ const CartPage = () => {
                                     <th className="py-2 text-start hidden md:block ">Image</th>
                                     <th className="py-2 text-start">Name</th>
                                     <th className="py-2 text-start">Weight</th>
-                                    <th className="py-2 text-start  hidden md:block">Total Cartoon</th>
+                                    {/* <th className="py-2 text-start  hidden md:block">Total Cartoon</th> */}
                                     <th className="py-2 text-start">Total CBM</th>
                                     <th className="py-2 text-start ">Price</th>
                                     <th className="py-2 text-start">Quantity</th>
@@ -125,14 +126,14 @@ const CartPage = () => {
                                     <tr key={item.id} className="*:text-xs border-b border-gray-300">
                                         <td className="py-2  hidden md:block">
                                             <img
-                                                src={item.image}
+                                                src={getUrl(item.image)}
                                                 alt={item.name}
                                                 className="object-cover w-20 h-20 mr-4"
                                             />
                                         </td>
-                                        <td className="py-1">{item.productName}</td>
+                                        <td className="py-2">{item.productName}</td>
                                         <td className="py-2">{item.weight * item.quantity} gm</td>
-                                        <td className="py-2  hidden md:block">{item.quantity}</td>
+                                        {/* <td className="py-2 ">{item.quantity}</td> */}
                                         <td className="py-2">{item.cbm * item.quantity} cm<sup>3</sup></td>
                                         <td className="py-2">{item.price} $</td>
                                         <td className="py-2">

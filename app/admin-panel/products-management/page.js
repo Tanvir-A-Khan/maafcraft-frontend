@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Card, Typography } from "@material-tailwind/react";
-import { deleteProduct, getAllProducts } from "@/app/api/api";
+import { deleteProduct, getAllProducts, getAllProductsAdmin } from "@/app/api/api";
 import { useRouter } from "next/navigation";
 import { getUrl } from "@/app/utils/service";
 
@@ -29,7 +29,7 @@ const ProductManagement = () => {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await getAllProducts();
+                const response = await getAllProductsAdmin();
                 if (response.result) {
                     setTableRows(response.data.data);
                 } else {
@@ -62,7 +62,7 @@ const ProductManagement = () => {
         location.reload();
     };
     return (
-        <div className="py-8">
+        <div className="mx-auto  py-4 flex flex-col items-center w-full">
             <h1 className="text-3xl text-center font-bold mb-8 text-gray-800">
                 Product Management
             </h1>
@@ -73,12 +73,12 @@ const ProductManagement = () => {
             >
                 Add New Product
             </Link>
-            <Card>
-                <h2 className="text-2xl mx-2  font-bold my-8 text-gray-800">
+            <div className="">
+                <h2 className="text-2xl font-bold my-8 text-gray-800">
                     All Products
                 </h2>
-                <div className="overflow-x-auto">
-                    <table className="w-full table-auto">
+                <div className="">
+                    <table className="">
                         <thead>
                             <tr className="bg-gray-100">
                                 {TABLE_HEAD.map((head, index) => (
@@ -201,7 +201,7 @@ const ProductManagement = () => {
                         </tbody>
                     </table>
                 </div>
-            </Card>
+            </div>
         </div>
     );
 };

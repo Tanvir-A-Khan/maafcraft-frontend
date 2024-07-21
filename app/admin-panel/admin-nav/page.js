@@ -7,8 +7,8 @@ import { usePathname } from 'next/navigation'
 const AdminNav = () => {
     const path = usePathname();
     return (
-        <div className="md:ms-28 md:me-4 mx-2 my-4 mt-20">
-            <div className="flex flex-col gap-2">
+        <div className="md:mx-28 my-4">
+            <div className="flex gap-2">
                 <Link
                     href={"/admin-panel/products-management"}
                     className={`bg-green-600 p-2 m-0 text-white text-xs rounded-md w-36 hover:bg-green-800
@@ -22,11 +22,11 @@ const AdminNav = () => {
                     Product Management
                 </Link>
                 <Link
-                    href={"/admin-panel/checkout-management"}
+                    href={"/admin-panel/order-management"}
                     className={`bg-green-600 p-2 m-0 text-white text-xs rounded-md w-36 hover:bg-green-800 
                     ${usePathname()==="/admin-panel/checkout-management"? "bg-[#ff0000]" : null}`}
                 >
-                    Checkout Management
+                    Order Management
                 </Link>
                 <Link
                     href={"/admin-panel/feedback-management"}

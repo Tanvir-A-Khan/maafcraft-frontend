@@ -137,7 +137,7 @@ const AddProductForm = () => {
             if (res.result) {
                 setFormData(dataRef);
             }
-
+            // console.log(res.message);
             toast(res.message);
             // toast("Product added successfully");
         } catch (error) {
@@ -156,7 +156,7 @@ const AddProductForm = () => {
             <p className="mb-6 text-2xl font-semibold text-gray-800 uppercase">
                 Add New Product
             </p>
-            <Toaster position="top-center" reverseOrder={true} />
+            <Toaster position="top-center"  />
             <form
                 onSubmit={handleSubmit}
                 className="flex flex-col w-full gap-6"

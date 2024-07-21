@@ -58,12 +58,12 @@ const SearchSection = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center w-auto gap-3 lg:flex-row lg:mx-28">
+        <div className="flex flex-col items-center justify-center w-auto gap-3 lg:flex-row lg:mx-28 px-4">
             {/* Logo */}
             <img src="/slogo.png" alt="logo" width={150} />
 
             {/* Search bar */}
-            <div className="flex justify-between h-10 border-2 border-green-600">
+            <div className="flex justify-between h-10 border-2 border-green-600 ">
                 <input
                     type="text"
                     placeholder="Search"
@@ -99,12 +99,9 @@ const SearchSection = () => {
             </div>
 
             {/* Cart section */}
-
-
-
             <Link
                 href="/cart"
-                className="items-center justify-center hidden  mb-5 lg:flex hover:cursor-pointer"
+                className="items-center justify-center hidden mb-5 lg:flex hover:cursor-pointer"
             >
                 <div className="flex justify-center items-center mt-5">
 
