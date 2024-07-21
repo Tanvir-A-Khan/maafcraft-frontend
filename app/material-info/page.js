@@ -176,6 +176,7 @@ const MaterialInfo = () => {
                     />
                 </div>
                 <hr/>
+      
                 
             </div>
         </div>

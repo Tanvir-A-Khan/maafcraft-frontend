@@ -7,10 +7,10 @@ const Certification = () => {
                 Certification
             </h1>
 
-            <div className="flex-col justify-center gap-10 flex-wrap my-8 items-center md:flex-row flex">
+            <div className="flex-grow justify-center gap-10 flex-wrap my-8 items-center md:flex-row flex">
                 <div>
                     <img
-                        className="h-36 hover:scale-105 transition-all w-36 rounded-t-lg object-cover md:rounded-none md:rounded-lg"
+                        className="h-36 hover:scale-105 transition-all w-36 rounded-t-lg object-cover md:rounded-lg"
                         src="/certification/1.png"
                         alt="Certification 1"
                     />

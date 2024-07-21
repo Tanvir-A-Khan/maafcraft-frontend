@@ -110,7 +110,7 @@ const HeaderTop = () => {
                 </div>
             </div>
             <SearchSection/>
-            <div className="font-semibold text-green-800 px-96">
+            <div className="font-semibold text-green-800 px-96 hidden md:block">
                 <Marquee>
                     Maafcraft offers quality products, competitive prices, and
                     on-time delivery.
