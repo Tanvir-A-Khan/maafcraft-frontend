@@ -22,7 +22,6 @@ const AllProductCat = () => {
         async function fetchData() {
             const productsResponse = await getAllProducts();
             setProducts(productsResponse?.data?.data);
-            console.log(productsResponse?.data?.data);
             setLoading(false);
         }
 

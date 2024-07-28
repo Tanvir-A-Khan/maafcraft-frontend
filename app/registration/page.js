@@ -97,7 +97,6 @@ const RegistrationForm = () => {
         try {
             const data = await registerUser(formDataRegistration);
             if (data.result) {
-                console.log(data);
                 toast(data.message);
             } else {
                 toast(data.message);
@@ -154,7 +153,6 @@ const RegistrationForm = () => {
             toast(data.message);
             // console.log(data);
         } catch (e) {
-
             console.log(e);
         }
     };

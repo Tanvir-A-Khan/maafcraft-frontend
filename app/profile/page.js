@@ -34,7 +34,6 @@ const Profile = () => {
     const handleSave = async () => {
         try {
             const res = await updateUser(profile);
-            console.log("Profile updated:", res.data);
             toast(res.message);
             setIsEditing(false);
         } catch (error) {

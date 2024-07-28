@@ -71,7 +71,7 @@ const AddProductForm = () => {
 
         if (name == "category") {
             setCategory(value);
-            console.log(value);
+            // console.log(value);
             getSubTypes(value);
         }
     };
@@ -129,7 +129,7 @@ const AddProductForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        console.log(formData);
+        // console.log(formData);
 
         try {
             const res = await addNewProduct(formData);

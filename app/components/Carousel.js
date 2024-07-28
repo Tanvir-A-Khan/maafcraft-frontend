@@ -17,7 +17,6 @@ const Carousel = () => {
                 // Fetching product data
                 const response = await getAllProductsOfDashboardCategory("SLIDER");
                 setData(response.data.data);
-                console.log(response.data.data);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);

@@ -31,7 +31,7 @@ const FeedBack = () => {
 
     useEffect(() => {
         getOrder(token).then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setOrders(res.data);
             setLoading(false);
         });
@@ -41,7 +41,7 @@ const FeedBack = () => {
         setWorking(true);
         const res = await makePayment(order);
         location.replace(res.data.url);
-        console.log(res);
+        // console.log(res);
         setWorking(false);
     }
     const handleStatusChange = async(orderId, newStatus) => {
@@ -57,7 +57,7 @@ const FeedBack = () => {
             );
             
             // Log the change
-            console.log(`Order ID ${orderId} delivery status changed to ${newStatus}`);
+            // console.log(`Order ID ${orderId} delivery status changed to ${newStatus}`);
         } catch (error) {
             console.error('Failed to update delivery status', error);
         }

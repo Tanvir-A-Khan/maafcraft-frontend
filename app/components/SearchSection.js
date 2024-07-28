@@ -17,7 +17,6 @@ const SearchSection = () => {
         const fetchData = async () => {
             try {
                 const categoriesResponse = await getAllTypes("ProductType");
-                console.log(categoriesResponse.data);
                 setCategories(categoriesResponse.data);
             } catch (error) {
                 console.error("Error fetching categories:", error);

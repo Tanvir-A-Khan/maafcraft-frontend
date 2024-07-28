@@ -27,7 +27,6 @@ const FeedBack = () => {
 
     useEffect(() => {
         getOrder(token).then((res) => {
-            console.log(res.data);
             setOrders(res.data);
             setLoading(false);
         });

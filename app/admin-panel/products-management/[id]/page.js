@@ -56,7 +56,7 @@ const EditProduct = ({ params }) => {
 
     const getProds = async()=>{
         const res = await getAProduct(id);
-        console.log("data" , res.data);
+        // console.log("data" , res.data);
         setFormData(res.data);
         
     }
@@ -87,7 +87,7 @@ const EditProduct = ({ params }) => {
 
         if (name == "category") {
             setCategory(value);
-            console.log(value);
+            // console.log(value);
             getSubTypes(value);
         }
     };
@@ -145,7 +145,7 @@ const EditProduct = ({ params }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        console.log("uploading ... ", formData);
+        // console.log("uploading ... ", formData);
 
         try {
             const res = await updateProduct(formData);

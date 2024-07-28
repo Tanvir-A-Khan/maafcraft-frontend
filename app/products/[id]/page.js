@@ -49,7 +49,6 @@ const ViewProduct = ({ params }) => {
             // console.log(prod.data.images);
             setData(prod.data);
             setImg(prod.data.images[0]);
-            console.log(prod.data.images[0]);
             setQuantity(prod.data.moq);
             setRatingValue(Math.ceil(prod.data.rating));
             let c = 1;

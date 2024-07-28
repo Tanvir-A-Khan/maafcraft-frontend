@@ -9,7 +9,6 @@ import React, { useEffect, useState } from "react";
 
 const AllProduct = ({ params }) => {
     const { category } = params;
-    console.log(category);
     const [success, setSuccess] = useState(false);
     const pathname = usePathname();
 

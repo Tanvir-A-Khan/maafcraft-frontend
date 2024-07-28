@@ -55,9 +55,9 @@ const ProductManagement = () => {
     };
 
     const handleDelete = async (id) => {
-        console.log("popped delete", id);
+        // console.log("popped delete", id);
         const res = await deleteProduct(id);
-        console.log(res);
+        // console.log(res);
         location.reload();
     };
     return (

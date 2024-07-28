@@ -12,7 +12,7 @@ const FeedBack = () => {
     useEffect(() => {
         setLoading(true);
         getFeedBack().then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setTABLE_ROWS(res?.data);
             setLoading(false);
         });

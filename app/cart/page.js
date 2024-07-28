@@ -40,7 +40,6 @@ const CartPage = () => {
             return;
         }
         updateQuantity(itemId, newQuantity).then((res)=>{
-            console.log("res",res);
             toast(res.message);
         })
         const updatedCartItems = cartItems.map((item) => {

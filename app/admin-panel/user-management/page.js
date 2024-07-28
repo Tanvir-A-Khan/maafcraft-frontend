@@ -19,7 +19,7 @@ const UserManagement = () => {
     useEffect(() => {
         setLoading(true);
         getUsers().then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             setTABLE_ROWS(res.data);
             setLoading(false);
         });

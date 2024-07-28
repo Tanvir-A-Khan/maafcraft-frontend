@@ -16,8 +16,7 @@ const ImageSlider = () => {
         setLoading(true);
         const getData = async () => {
             const res = await getGalleryImages();
-            setImages(res.data);
-            console.log('hisi sisisi ' , res.data);
+            setImages(res?.data);
             setLoading(false);
         };
         getData();
