@@ -48,7 +48,6 @@ export async function addNewProduct(formData) {
     try {
         const response = await backend.post('/admin/products/add-new', formData);
         console.log(( response.data));      
-        console.log(response.message); 
          return response.data;
     } catch (error) {
         console.log("Error registering user:", error);

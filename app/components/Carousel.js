@@ -6,7 +6,6 @@ import { Slide } from "react-slideshow-image";
 import Spinner from "./Spinner";
 import { getAllProductsOfDashboardCategory } from "../api/api";
 import Link from "next/link";
-import { getUrl } from "../utils/service";
 
 const Carousel = () => {
     const [data, setData] = useState([]);
@@ -18,6 +17,7 @@ const Carousel = () => {
                 // Fetching product data
                 const response = await getAllProductsOfDashboardCategory("SLIDER");
                 setData(response.data.data);
+                console.log(response.data.data);
                 setLoading(false);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -39,7 +39,7 @@ const Carousel = () => {
                         <div
                             className="each-slide"
                             style={{
-                                backgroundImage: `url(${getUrl(item.images)})`,
+                                backgroundImage: `url(${item.images})`,
                                 backgroundSize: "cover", // Set the background size to cover
                                 backgroundPosition: "center", // Center the background image
                                 backgroundRepeat: "no-repeat",

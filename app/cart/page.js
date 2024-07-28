@@ -4,8 +4,7 @@ import Link from "next/link";
 import { useStateContext } from "../Context/AppContext";
 import { getCartItem, makeOrder, removeACart, updateQuantity } from "../api/api";
 import toast, { Toaster } from "react-hot-toast";
-import { extractDataFromJWT } from "../auth";
-import { getUrl } from "../utils/service";
+
 
 const CartPage = () => {
 
@@ -35,8 +34,8 @@ const CartPage = () => {
 
     // Mock data for cart items
 
-    const handleQuantityChange = (itemId, newQuantity) => {
-        if (newQuantity < Number(data.moq)) {
+    const handleQuantityChange = (itemId, moq, newQuantity) => {
+        if (newQuantity < Number(moq)) {
             toast.error("Quantity cannot be less than " + data.moq);
             return;
         }
@@ -126,7 +125,7 @@ const CartPage = () => {
                                     <tr key={item.id} className="*:text-xs border-b border-gray-300">
                                         <td className="py-2  hidden md:block">
                                             <img
-                                                src={getUrl(item.image)}
+                                                src={item.image}
                                                 alt={item.name}
                                                 className="object-cover w-20 h-20 mr-4"
                                             />
@@ -134,7 +133,7 @@ const CartPage = () => {
                                         <td className="py-2">{item.productName}</td>
                                         <td className="py-2">{item.weight * item.quantity} gm</td>
                                         {/* <td className="py-2 ">{item.quantity}</td> */}
-                                        <td className="py-2">{item.cbm * item.quantity} cm<sup>3</sup></td>
+                                        <td className="py-2">{((item.cbm * item.quantity)/100).toFixed(3)} cm<sup>3</sup></td>
                                         <td className="py-2">{item.price} $</td>
                                         <td className="py-2">
                                             <input
@@ -143,6 +142,7 @@ const CartPage = () => {
                                                 onChange={(e) =>
                                                     handleQuantityChange(
                                                         item.id,
+                                                        item.moq,
                                                         parseInt(e.target.value)
                                                     )
                                                 }

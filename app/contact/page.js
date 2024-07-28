@@ -157,17 +157,17 @@ const ContactForm = () => {
                             text="www.maafcraft.com"
                             link="http://www.maafcraft.com"
                         />
-                        <ContactDetail
+                        {/* <ContactDetail
                             icon={faPhone}
                             text="+88 01942 257473"
-                        />
+                        /> */}
                         <ContactDetail
                             icon={faPhone}
                             text="+880 (02)9883301"
                         />
                         <ContactDetail
                             icon={faMobileAlt}
-                            text="+8801712801284, +8801727626490, +8801884159814"
+                            text="+88 01712 801284, +88 01727 626490, +88 01884 159814"
                         />
                         <ContactDetail
                             icon={faIndustry}

@@ -22,6 +22,7 @@ const AllProductCat = () => {
         async function fetchData() {
             const productsResponse = await getAllProducts();
             setProducts(productsResponse?.data?.data);
+            console.log(productsResponse?.data?.data);
             setLoading(false);
         }
 
@@ -48,7 +49,7 @@ const AllProductCat = () => {
                     {products.map((data) => (
                         <Link href={`/products/${data.id}`} key={data.id}>
                             <Product
-                                imageUrl={`./product_image/${data.images[0]}`}
+                                imageUrl={data.images[0]}
                                 productName={data.item}
                                 price={data.pricePerPiece}
                                 rating={data.rating}

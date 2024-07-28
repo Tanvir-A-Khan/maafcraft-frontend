@@ -5,7 +5,6 @@ import { getGalleryImages } from "../api/api";
 import Spinner from "../components/Spinner";
 import Link from "next/link";
 import ImageSlider from "../components/ImageSlider";
-import { getUrl } from "../utils/service";
 
 // const images = [
 //     { src: "/products/1.jpg", aspect_ratio: 5/3 },
@@ -47,7 +46,7 @@ export default function MyGallery() {
         {images?.map((data, index) => (
           <Link href={"/products/" + data.id} key={index}>
             <img
-              src={getUrl(data.src)}
+              src={data.src}
               alt={data.productName}
               className="object-cover w-full h-auto hover:scale-105 transition-all"
             />

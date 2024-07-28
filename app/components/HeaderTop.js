@@ -81,7 +81,7 @@ const HeaderTop = () => {
                 <div className="flex-col items-center justify-center hidden gap-2 text-xs text-red-600 lg:flex">
                     <div>
                         <FontAwesomeIcon icon={faPhone} className="w-5" />
-                        Hotline: +88 01942 257473
+                        Hotline: +88 01712 801284
                     </div>
                   
                 </div>

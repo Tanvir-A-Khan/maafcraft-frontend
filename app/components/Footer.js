@@ -27,7 +27,7 @@ const Footer = () => {
                 <div className="w-full md:w-1/4 mb-8 md:mb-0">
                     <h4 className="font-bold text-lg mb-2">Contact Info</h4>
                     <p>Call Us for any query</p>
-                    <p className="text-2xl font-bold text-red-600">+88 01942 257473</p>
+                    <p className="text-2xl font-bold text-red-600">+88 01712 801284</p>
                     <p className="text-xs font-bold text-green-600">Email 1: contact@maafcraft.com</p>
                     <p className="text-xs font-bold text-green-600">Email 2: maafcraftbd@gmail.com</p>
                 </div>

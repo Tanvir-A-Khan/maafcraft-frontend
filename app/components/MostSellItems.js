@@ -4,7 +4,6 @@ import { getAllProductsOfCategory, getAllProductsOfDashboardCategory } from "../
 import Spinner from "./Spinner";
 import Link from "next/link";
 import Product from "./Product";
-import { getUrl } from "../utils/service";
 
 
 const MostSellItems = () => {
@@ -43,7 +42,7 @@ const MostSellItems = () => {
                 {data.map((data, index) => (
                     <Link href={`/products/${data.id}`} key={index}>
                         <Product
-                            imageUrl={ getUrl( data.images)}
+                            imageUrl={ data.images}
                             productName={data.item}
                             price={data.pricePerPiece}
                             rating={data.rating}

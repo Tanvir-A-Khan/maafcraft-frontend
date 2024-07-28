@@ -4,7 +4,7 @@ import { addToCart, getAProduct } from "@/app/api/api";
 import { extractDataFromJWT } from "@/app/auth";
 import Spinner from "@/app/components/Spinner";
 import WhatsAppButton from "@/app/components/WhatsAppButton";
-import { getUrl } from "@/app/utils/service";
+import { } from "@/app/utils/service";
 import React, { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import ReactImageZoom from "react-image-zoom";
@@ -48,7 +48,7 @@ const ViewProduct = ({ params }) => {
             setImages(prod.data.images);
             // console.log(prod.data.images);
             setData(prod.data);
-            setImg("../" + getUrl(prod.data.images[0]));
+            setImg(prod.data.images[0]);
             console.log(prod.data.images[0]);
             setQuantity(prod.data.moq);
             setRatingValue(Math.ceil(prod.data.rating));
@@ -147,11 +147,10 @@ const ViewProduct = ({ params }) => {
                                 } overflow-hidden`}
                             >
                                 <img
-                                    src={"../" + getUrl(image)}
-                                    alt={getUrl(image)}
+                                    src={ image }
+                                    alt={image}
                                     onMouseOver={() =>
-                                        handleHover(
-                                            "../" + getUrl(image),
+                                        handleHover(image,
                                             index
                                         )
                                     }
@@ -273,13 +272,13 @@ const ViewProduct = ({ params }) => {
                                         />
                                     </td>
                                     <td className="p-2">
-                                        {cbm.toFixed(2)} m<sup>3</sup>
+                                        {cbm.toFixed(3)} m<sup>3</sup>
                                     </td>
                                     <td className="p-2">{quantity}</td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div className="flex flex-col items-start">
+                        {/* <div className="flex flex-col items-start">
                             <Rating
                                 initialRating={ratingValue}
                                 readonly
@@ -302,7 +301,7 @@ const ViewProduct = ({ params }) => {
                                 }
                             />
                             <strong>Rating: {data.rating}/5.0</strong>
-                        </div>
+                        </div> */}
                         <div className="flex gap-4 mt-4 flex-row">
                             <button
                                 type="button"
