@@ -5,10 +5,10 @@ const StateContext = createContext();
 
 export const StateProvider = ({ children }) => {
   const tokenData = typeof localStorage !== "undefined" ? localStorage.getItem("auth") : null;
-  console.log("tokendata", tokenData);
+  // console.log("tokendata", tokenData);
 
   const emailData = typeof  localStorage !== "undefined" ? localStorage.getItem("email") : null;
-  console.log("context email", emailData);
+  // console.log("context email", emailData);
   const [globalState, setGlobalState] = useState(tokenData);
   const [token, setToken] = useState(emailData);
 

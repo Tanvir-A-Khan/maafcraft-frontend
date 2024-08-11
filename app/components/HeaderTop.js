@@ -1,12 +1,9 @@
 "use client";
 import Link from "next/link";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone, faSearch } from "@fortawesome/free-solid-svg-icons";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import { getNameAutoComplete } from "../api/api";
 import { useRouter } from "next/navigation";
 import Marquee from "react-fast-marquee";
 import { useStateContext } from "../Context/AppContext";
@@ -25,7 +22,6 @@ const HeaderTop = () => {
         if ((globalState !== null) & (typeof globalState !== undefined)) {
             const data = extractDataFromJWT(globalState);
             if (data) {
-                // console.log(data);
                 setIsAdmin(data.roles.includes("ROLE_ADMIN"));
                 setIslogged(data.roles.includes("ROLE_USER"));
             }
@@ -42,36 +38,14 @@ const HeaderTop = () => {
     }
 
     const handleLogout = () => {    
-        // console.log("loggingout ...");
         setGlobalState(null);
         localStorage.removeItem("auth");
         localStorage.clear();
-        location.href = "http://localhost:3000";
-        // location.reload();
+        // location.href = "http://localhost:3000";
+        router.push("/");
     };
 
     const [items, setItems] = useState([{ id: 0, name: "Searching...." }]);
-
-    const handleOnSearch = async (string, results) => {
-        // Triggered when the user types in the search input
-        const response = await getNameAutoComplete(string);
-        setItems(response.data);
-
-        // console.log(string, results);
-    };
-
-    const handleOnHover = (item) => {
-        // Triggered when the user hovers over an item in the suggestions list
-        // console.log("Item hovered:", item);
-    };
-
-    const handleOnSelect = (item) => {
-        // Triggered when the user selects an item from the suggestions list
-
-        router.push("/products/" + item.name);
-        // console.log("Item selected:", item);
-        // onSearchSelected(item);
-    };
     return (
         <div className="">
             <div className="sticky top-0 z-20 md:flex justify-between h-auto md:px-28 bg-[#EFEFEF]">
@@ -88,19 +62,6 @@ const HeaderTop = () => {
                     <p className="flex items-center justify-center h-auto text-xl font-semibold text-green-600 md:text-3xl">
                         MAAF Craft and Fashion
                     </p> 
-                {/* <div className="z-20 flex items-center">
-                    <ReactSearchAutocomplete
-                        items={items}
-                        onSearch={handleOnSearch}
-                        onHover={handleOnHover}
-                        onSelect={handleOnSelect}
-                        className="w-96"
-                    />
-                    <Link href={"/cart"}>
-                        <AiOutlineShoppingCart className="text-4xl ms-10 hover:cursor-pointer" />
-                    </Link>
-                </div> */}
-
                 <div className="flex items-center justify-center h-auto gap-3 ">
                     {globalState ? (
                         <div className="flex justify-around w-72 py-1 text-xs text-slate-600">

@@ -27,7 +27,6 @@ const SearchSection = () => {
     }, []);
 
     const handleCategoryChange = (event) => {
-        console.log(event.target.value);
         setSelectedCategory(event.target.value);
     };
 
@@ -36,18 +35,7 @@ const SearchSection = () => {
     };
 
     const handleSearch = () => {
-        console.log(
-            "Search triggered for:",
-            searchQuery,
-            "in category:",
-            selectedCategory
-        );
-
-        // searchProducts(searchQuery, selectedCategory, 0, 10)
-        // .then((res) => {console.log(res);})
-
         router.push(`/products/search/${searchQuery}/${selectedCategory}`);
-        // Add your search logic here
     };
 
     const handleKeyDown = (event) => {
