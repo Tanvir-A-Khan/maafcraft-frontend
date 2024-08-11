@@ -60,7 +60,7 @@ const AllProduct = ({ params }) => {
                         {products.map((data, index) => (
                             <Link href={`/products/${data.id}`} key={index}>
                                 <Product
-                                    imageUrl={`../../product_image/${data.images[0]}`}
+                                    imageUrl={data.images[0]}
                                     productName={data.item}
                                     price={data.pricePerPiece}
                                     rating={data.rating}
