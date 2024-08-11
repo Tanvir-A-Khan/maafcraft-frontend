@@ -1,8 +1,10 @@
 "use client";
+import { useRouter } from "next/navigation";
 import AdminNav from "./admin-nav/page";
+import { useEffect } from "react";
 
 export default function AdminLayout({ children }) {
-    // const admin = localStorage.getItem("email");
+    const admin = localStorage.getItem("email");
     // console.log(admin);
     // console.log(process.env.ADMIN_CREDENTIAL);
     // if(admin === process.env.ADMIN_CREDENTIAL){
@@ -10,6 +12,15 @@ export default function AdminLayout({ children }) {
     //         <h1>Page not found</h1>
     //     </div>
     // }
+
+    const router = useRouter();
+
+    useEffect(() => {
+        // Replace this condition with your own logic
+        if (admin!=='info@maafcraft.com') {
+            router.push("/notfound"); // Redirect to the target page
+        }
+    }, [router]);
     return (
         <div className=" flex flex-col justify-start gap-2">
             <AdminNav />
