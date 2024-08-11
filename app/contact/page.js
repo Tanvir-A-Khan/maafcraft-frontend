@@ -171,11 +171,11 @@ const ContactForm = () => {
                         />
                         <ContactDetail
                             icon={faIndustry}
-                            text="Factory: South Debipur (Ranigonj), Ghoraghat, Dinajpur, (post code- 5291), Bangladesh. কারখানাঃ দক্ষিণ দেবীপুর (রানীগন্জ), ঘোড়াঘাট, দিনাজপুর, (পোস্ট কোড- ৫২৯১), বাংলাদেশ।"
+                            text="Factory: South Debipur (Ranigonj), Ghoraghat, Dinajpur, (post code- 5290), Bangladesh. কারখানাঃ দক্ষিণ দেবীপুর (রানীগন্জ), ঘোড়াঘাট, দিনাজপুর, (পোস্ট কোড- ৫২৯০), বাংলাদেশ।"
                         />
                         <ContactDetail
                             icon={faBuilding}
-                            text="Corporate office: Plot #113 (8th Floor), Ranavola Avenue(Road #13), Sector #10, Uttara Model Town, Dhaka-1230, Bangladesh. কর্পোরেট অফিস: প্লট #113 (৮ম তলা), রানাভোলা এভিনিউ (রোড #১৩), সেক্টর #১০, উত্তরা মডেল টাউন, ঢাকা-১২০, বাংলাদেশ।"
+                            text="Corporate office: Plot #111 (8th Floor), Ranavola Avenue(Road #13), Sector #10, Uttara Model Town, Dhaka-1230, Bangladesh. কর্পোরেট অফিস: প্লট #111 (৮ম তলা), রানাভোলা এভিনিউ (রোড #১৩), সেক্টর #১০, উত্তরা মডেল টাউন, ঢাকা-১২০, বাংলাদেশ।"
                         />
                     </div>
                 </div>

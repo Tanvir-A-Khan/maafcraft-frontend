@@ -30,6 +30,7 @@ const Footer = () => {
                     <p className="text-2xl font-bold text-red-600">+88 01712 801284</p>
                     <p className="text-xs font-bold text-green-600">Email 1: contact@maafcraft.com</p>
                     <p className="text-xs font-bold text-green-600">Email 2: maafcraftbd@gmail.com</p>
+                    <p className="text-xs font-bold text-green-600">Email 3: maaf.trade@gmail.com</p>
                 </div>
                  {/* Payment Methods */}
                  <div className="w-full md:w-1/4 mb-8 md:mb-0">
@@ -50,10 +51,10 @@ const Footer = () => {
                  <div className="w-full md:w-1/4 mb-8 md:mb-0">
                     <img src="/slogo.png" alt="logo" width={100}/>
                     <h4 className="font-bold text-lg mb-2">Location Details</h4>
-                    <p className="text-xs">Factory: South Debipur (Ranigonj), Ghoraghat, Dinajpur, (post code- 5291), Bangladesh.<br />
+                    <p className="text-xs">Factory: South Debipur (Ranigonj), Ghoraghat, Dinajpur, (post code- 5290), Bangladesh.<br />
                         {/* কারখানাঃ দক্ষিণ দেবীপুর (রানীগন্জ), ঘোড়াঘাট, দিনাজপুর, (পোস্ট কোড- ৫২৯১), বাংলাদেশ। */}
                     </p>
-                    <p className="mt-2 text-xs">Corporate office: Plot #113 (8th Floor), Ranavola Avenue (Road #13), Sector #10, Uttara Model Town, Dhaka-1230, Bangladesh.<br />
+                    <p className="mt-2 text-xs">Corporate office: Plot #111 (8th Floor), Ranavola Avenue (Road #13), Sector #10, Uttara Model Town, Dhaka-1230, Bangladesh.<br />
                         {/* কর্পোরেট অফিস: প্লট #113 (৮ম তলা), রানাভোলা এভিনিউ (রোড #১৩), সেক্টর #১০, উত্তরা মডেল টাউন, ঢাকা-১২০, বাংলাদেশ। */}
                     </p>
                 </div>
