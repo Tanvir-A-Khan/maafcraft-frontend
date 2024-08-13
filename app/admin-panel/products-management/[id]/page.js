@@ -79,15 +79,14 @@ const EditProduct = ({ params }) => {
         "SLIDER",
         "DISCOUNT_PRODUCTS",
         "MOST_SELLING_ITEMS",
-    ]; // Example dashboard views
+    ]; 
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: trimString(value) });
+        setFormData({ ...formData, [name]: value });
 
         if (name == "category") {
             setCategory(value);
-            // console.log(value);
             getSubTypes(value);
         }
     };
@@ -468,7 +467,13 @@ const EditProduct = ({ params }) => {
                                     htmlFor={`image-${index}`}
                                     className="block mb-2 text-gray-700"
                                 >
+                                    {/* {
+                                        image.length>400 && <img src={image} alt="image" weight={40}  height={40}/>
+                                    } */}
+                                    {`${image}\n`}
+                                    
                                     Image {index + 1}: <img src={image} alt="image" weight={40}  height={40} />
+
                                 </label>
                                 <input
                                     type="file"

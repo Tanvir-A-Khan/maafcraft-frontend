@@ -67,7 +67,7 @@ const AddProductForm = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({ ...formData, [name]: trimString(value) });
+        setFormData({ ...formData, [name]: value });
 
         if (name == "category") {
             setCategory(value);
