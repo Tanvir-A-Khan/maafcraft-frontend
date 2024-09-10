@@ -181,7 +181,7 @@ const ViewProduct = ({ params }) => {
                             <strong>Color:</strong> {data.color}
                         </p>
                         <p>
-                            <strong>FOB Price/Pcs:</strong> {data.pricePerPiece}
+                            <strong>FOB Price/Pcs:</strong> {data.pricePerPiece?data.pricePerPiece+' $':'Negotiable'}
                         </p>
                         <p>
                             <strong>MOQ:</strong> {data.moq}
@@ -251,9 +251,8 @@ const ViewProduct = ({ params }) => {
                                                                 </td>
                                                                 <td>
                                                                     {
-                                                                        detail.weight
-                                                                    }{" "}
-                                                                    gm
+                                                                        detail.weight==null?"N/A":detail.weight+" gm"
+                                                                    }
                                                                 </td>
                                                             </tr>
                                                         )

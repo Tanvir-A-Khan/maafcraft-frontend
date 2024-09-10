@@ -11,8 +11,7 @@ function imageToBase64(image) {
         reader.onerror = (error) => reject(error);
     });
 }
-
-const dataRef = {
+const clear = {
     item: "",
     model: "",
     materials: "",
@@ -21,7 +20,26 @@ const dataRef = {
     ],
     technique: "",
     category: "",
-    subCategory: "Pat",
+    subCategory: "",
+    dashboardView: "NONE",
+    color: "",
+    pricePerPiece: "",
+    remarks: "",
+    moq: "",
+    images: [""],
+    description: "",
+};
+
+let dataRef = {
+    item: "",
+    model: "",
+    materials: "",
+    productDetails: [
+        { productSize: "", length: "", width: "", height: "", weight: "" },
+    ],
+    technique: "",
+    category: "",
+    subCategory: "",
     dashboardView: "NONE",
     color: "",
     pricePerPiece: "",
@@ -32,23 +50,24 @@ const dataRef = {
 };
 
 const AddProductForm = () => {
-    const [category, setCategory] = useState([""]);
+
+    const [category, setCategory] = useState('Jute');
+    const [subCategory, setSubCategory] = useState('');
+
     const [categories, setCategories] = useState([""]);
-    const [subCategories, setSubCategories] = useState([
-        "Category 1",
-        "Category 2",
-        "Category 3",
-    ]);
+    const [subCategories, setSubCategories] = useState(['']);
     const [formData, setFormData] = useState(dataRef);
 
     const getTypes = async () => {
         const categoriesResponse = await getAllTypes("ProductType");
         setCategories(categoriesResponse.data);
+
     };
     const getSubTypes = async (value) => {
         const categoriesResponse = await getAllTypes(value + "Type");
-        // console.log(categoriesResponse.data);
         setSubCategories(categoriesResponse.data);
+        const firstData =  categoriesResponse.data[0];
+        setSubCategory(firstData);       
     };
     function trimString(str) {
         return str.replace(/^\s+|\s+$/g, '');
@@ -65,14 +84,18 @@ const AddProductForm = () => {
         "MOST_SELLING_ITEMS",
     ]; // Example dashboard views
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+    const handleChange =  (e) => {
+        const { name, value } = e.target; 
         setFormData({ ...formData, [name]: value });
 
         if (name == "category") {
-            setCategory(value);
             // console.log(value);
+            setCategory(value);
+            // console.log(formData);
             getSubTypes(value);
+        }
+        if(name == "subCategory"){
+            setSubCategory(value);
         }
     };
     const [loading, setLoading] = useState(false);
@@ -129,21 +152,36 @@ const AddProductForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-        // console.log(formData);
+        // console.log(category);
+        // console.log(subCategory);
+
+        dataRef = formData;
+        dataRef.category = category;
+        dataRef.subCategory = subCategory;
+
+        
+        // console.log(dataRef);
+        // return;
 
         try {
-            const res = await addNewProduct(formData);
+            const res = await addNewProduct(dataRef);
 
             if (res.result) {
-                setFormData(dataRef);
+                setFormData(clear);
+                dataRef = clear;
             }
             // console.log(res.message);
             toast(res.message);
             // toast("Product added successfully");
         } catch (error) {
             console.error("Error adding product:", error);
+            return;
         } finally {
             setLoading(false);
+            setFormData(clear);
+            setCategory('');
+            setSubCategory('');
+            dataRef = clear;
         }
     };
 
@@ -264,7 +302,6 @@ const AddProductForm = () => {
                                         onChange={handleDetailsChange(index)}
                                         placeholder="Weight"
                                         className="w-full p-4 border rounded shadow-sm"
-                                        required
                                     />
                                     <button
                                         type="button"
@@ -319,9 +356,9 @@ const AddProductForm = () => {
                                 className="w-full p-4 bg-white border rounded shadow-sm"
                                 required
                             >
-                                {categories.map((category, index) => (
-                                    <option value={category} key={index}>
-                                        {category}
+                                {categories.map((categoryItem, index) => (
+                                    <option value={categoryItem} key={index}>
+                                        {categoryItem}
                                     </option>
                                 ))}
                             </select>

@@ -30,7 +30,7 @@ const Product = (props) => {
                 </h2>
                 <div className=" flex  justify-between">
                     <div>
-                        <h2 className="text-xs">Price: {price} $</h2>
+                        <h2 className="text-xs">Price: {price?price+' $':"Negotiable"}</h2>
                         <h2 className="text-xs">Rating: {rating}/5.0</h2>
                     </div>
                 </div>

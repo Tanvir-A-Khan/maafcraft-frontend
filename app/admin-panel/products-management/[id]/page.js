@@ -12,8 +12,7 @@ function imageToBase64(image) {
         reader.onerror = (error) => reject(error);
     });
 }
-
-const dataRef = {
+const clear = {
     item: "",
     model: "",
     materials: "",
@@ -22,7 +21,7 @@ const dataRef = {
     ],
     technique: "",
     category: "",
-    subCategory: "Pat",
+    subCategory: "",
     dashboardView: "NONE",
     color: "",
     pricePerPiece: "",
@@ -32,26 +31,45 @@ const dataRef = {
     description: "",
 };
 
+let dataRef = {
+    item: "",
+    model: "",
+    materials: "",
+    productDetails: [
+        { productSize: "", length: "", width: "", height: "", weight: "" },
+    ],
+    technique: "",
+    category: "",
+    subCategory: "",
+    dashboardView: "NONE",
+    color: "",
+    pricePerPiece: "",
+    remarks: "",
+    moq: "",
+    images: [""],
+    description: "",
+};
+
+
 const EditProduct = ({ params }) => {
     const { id } = params;
     const router = useRouter();
-    const [category, setCategory] = useState([""]);
+    const [category, setCategory] = useState('Jute');
+    const [subCategory, setSubCategory] = useState('');
     const [categories, setCategories] = useState([""]);
-    const [subCategories, setSubCategories] = useState([
-        "Category 1",
-        "Category 2",
-        "Category 3",
-    ]);
+    const [subCategories, setSubCategories] = useState([]);
     const [formData, setFormData] = useState(dataRef);
 
     const getTypes = async () => {
         const categoriesResponse = await getAllTypes("ProductType");
         setCategories(categoriesResponse.data);
+
     };
     const getSubTypes = async (value) => {
         const categoriesResponse = await getAllTypes(value + "Type");
-        // console.log(categoriesResponse.data);
         setSubCategories(categoriesResponse.data);
+        const firstData =  categoriesResponse.data[0];
+        setSubCategory(firstData);       
     };
 
     const getProds = async()=>{
@@ -81,13 +99,18 @@ const EditProduct = ({ params }) => {
         "MOST_SELLING_ITEMS",
     ]; 
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
+    const handleChange =  (e) => {
+        const { name, value } = e.target; 
         setFormData({ ...formData, [name]: value });
 
         if (name == "category") {
+            // console.log(value);
             setCategory(value);
+            // console.log(formData);
             getSubTypes(value);
+        }
+        if(name == "subCategory"){
+            setSubCategory(value);
         }
     };
     const [loading, setLoading] = useState(false);
@@ -145,21 +168,27 @@ const EditProduct = ({ params }) => {
         e.preventDefault();
         setLoading(true);
         // console.log("uploading ... ", formData);
+        
+        dataRef = formData;
+        dataRef.category = category;
+        dataRef.subCategory = subCategory;
 
         try {
             const res = await updateProduct(formData);
 
             if (res.result) {
-                setFormData(dataRef);
+                setFormData(clear);
+                dataRef = clear;
             }
-
             toast(res.message);
             router.push("/admin-panel/products-management");
             // toast("Product added successfully");
         } catch (error) {
             console.error("Error adding product:", error);
+            return;
         } finally {
             setLoading(false);
+            
         }
     };
 
@@ -280,7 +309,6 @@ const EditProduct = ({ params }) => {
                                         onChange={handleDetailsChange(index)}
                                         placeholder="Weight"
                                         className="w-full p-4 border rounded shadow-sm"
-                                        required
                                     />
                                     <button
                                         type="button"
