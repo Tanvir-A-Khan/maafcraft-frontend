@@ -8,7 +8,7 @@ export default function AdminLayout({ children }) {
 
     useEffect(() => {
         const adminEmail = localStorage.getItem("email");
-        if (adminEmail !== 'info@maafcraft.com') {
+        if (adminEmail !== 'mostlytanvir@gmail.com') {
             router.push("/notfound");
         }
     }, [router]);
