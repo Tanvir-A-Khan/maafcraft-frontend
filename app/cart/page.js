@@ -130,10 +130,10 @@ const CartPage = () => {
                                             />
                                         </td>
                                         <td className="py-2">{item.productName}</td>
-                                        <td className="py-2">{item.weight * item.quantity} gm</td>
+                                        <td className="py-2">{(item.weight==0?"N/A":((item.weight*item.quantity)+" gm"))}</td>
                                         {/* <td className="py-2 ">{item.quantity}</td> */}
                                         <td className="py-2">{((item.cbm * item.quantity)/100).toFixed(3)} cm<sup>3</sup></td>
-                                        <td className="py-2">{item.price} $</td>
+                                        <td className="py-2">{item.price?item.price+' $':"Negotiable"}</td>
                                         <td className="py-2">
                                             <input
                                                 type="number"
