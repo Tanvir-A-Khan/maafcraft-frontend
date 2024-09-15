@@ -32,7 +32,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 z-20 bg-[#444444]">
+    <div className="sticky top-0 z-50 bg-[#444444]">
       <div className="flex items-center justify-between p-4 lg:hidden">
         <Link href="/" className="text-2xl text-white">
           <FontAwesomeIcon icon={faHome} />

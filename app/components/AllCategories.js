@@ -64,6 +64,10 @@ const AllCategories = () => {
     if (categoryName === undefined) categoryName = "";
     router.push(`/products/categories/${mainCategory}/${categoryName}`);
   };
+  const handleMainCategoryClick = (categoryName) => {
+    if (categoryName === undefined) categoryName = "";
+    router.push(`/products/categories/${categoryName}`);
+  };
 
   if (loading) {
     return <Spinner />;
@@ -71,7 +75,7 @@ const AllCategories = () => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex justify-between p-4 text-xl md:w-64 w-full font-bold bg-slate-50">
+      <div className="flex justify-between p-4 text-xl md:w-56 w-full font-bold bg-slate-50">
         <p>{"🗂️"} Categories</p>
         <button
           onClick={toggleMenu}
@@ -83,7 +87,7 @@ const AllCategories = () => {
 
       {isMenuOpen && (
         <div className="relative flex flex-col">
-          <ul className="w-52 text-sm hover:cursor-pointer">
+          <ul className="w-56 text-sm hover:cursor-pointer">
             {categories.map((category, index) => (
               <li
                 key={index}
@@ -99,12 +103,12 @@ const AllCategories = () => {
 
           {got && (
             <ul
-              className={`absolute bg-white w-[300px] shadow-lg rounded hover:cursor-pointer z-40 text-sm md:block ${
+              className={`absolute bg-white ms-36 md:ms-56 w-[250px] shadow-lg rounded hover:cursor-pointer z-40 text-sm md:block ${
                 activeCategoryIndex !== null ? "block" : "hidden"
               }`}
               style={{ top: height }} // Adjust top position
             >
-              <li className="p-2 mb-1 font-bold text-center bg-slate-100">
+              <li className="p-2 mb-1 font-bold text-center bg-slate-100" onClick={()=>handleMainCategoryClick(mainCategory)}>
                 {"🏷️"} {replaceUnderscoresWithSpaces(mainCategory)} {"🏷️"}
               </li>
               {hoveredCategory.map((item, index) => (
