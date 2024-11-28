@@ -1,0 +1,37 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up SSH agent with the private key from secrets
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Deploy to VPS
+      - name: Deploy to VPS
+        env:
+          HOST: 195.35.48.91
+          USER: app
+          APP_DIR: /home/app/maafcraft-frontend
+        run: |
+          ssh -o StrictHostKeyChecking=no $USER@$HOST "
+            set -e
+            cd $APP_DIR
+            git fetch --all
+            git reset --hard origin/main
+            npm run build
+            pm2 restart frontend
+          "
