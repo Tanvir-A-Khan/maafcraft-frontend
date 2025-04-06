@@ -30,8 +30,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no $USER@$HOST "
             set -e
             cd $APP_DIR
-            git fetch --all
-            git reset --hard origin/main
+            git pull origin main
             npm run build
             pm2 restart frontend
           "
