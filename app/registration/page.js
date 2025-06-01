@@ -273,7 +273,7 @@ const RegistrationForm = () => {
                         
                     </button>
                 </div>
-                {otpSent && (
+                {otpSent || 1 && (
                     <div className="mb-4">
                         <label
                             htmlFor="otp"

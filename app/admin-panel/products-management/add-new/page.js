@@ -18,14 +18,19 @@ const clear = {
     productDetails: [
         { productSize: "", length: "", width: "", height: "", weight: "" },
     ],
+    cartonSize: {
+        lengthD: "",
+        width: "",
+        height: "",
+    },
     technique: "",
     category: "",
     subCategory: "",
-    dashboardView: "NONE",
     color: "",
     pricePerPiece: "",
     remarks: "",
     moq: "",
+    unit: "",
     images: [""],
     description: "",
 };
@@ -37,14 +42,19 @@ let dataRef = {
     productDetails: [
         { productSize: "", length: "", width: "", height: "", weight: "" },
     ],
+    cartonSize: {
+        lengthD: "",
+        width: "",
+        height: "",
+    },
     technique: "",
     category: "",
     subCategory: "",
-    dashboardView: "NONE",
     color: "",
     pricePerPiece: "",
     remarks: "",
     moq: "",
+    unit: "",
     images: [""],
     description: "",
 };
@@ -76,13 +86,6 @@ const AddProductForm = () => {
         getTypes();
         getSubTypes("Jute");
     }, []);
-
-    const dashboard = [
-        "NONE",
-        "SLIDER",
-        "DISCOUNT_PRODUCTS",
-        "MOST_SELLING_ITEMS",
-    ]; // Example dashboard views
 
     const handleChange =  (e) => {
         const { name, value } = e.target; 
@@ -128,6 +131,17 @@ const AddProductForm = () => {
             (_, i) => i !== index
         );
         setFormData({ ...formData, productDetails: updatedDetails });
+    };
+
+    const handleCartonChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ 
+            ...formData, 
+            cartonSize: { 
+                ...formData.cartonSize, 
+                [name]: value 
+            } 
+        });
     };
 
     const handleImageChange = async (e, index) => {
@@ -223,14 +237,14 @@ const AddProductForm = () => {
                                 htmlFor="model"
                                 className="block mb-2 text-gray-700"
                             >
-                                Model:
+                                Art No:
                             </label>
                             <input
                                 type="text"
                                 name="model"
                                 value={formData.model}
                                 onChange={handleChange}
-                                placeholder="Model"
+                                placeholder="Art No"
                                 className="w-full p-4 border rounded shadow-sm"
                                 required
                             />
@@ -240,14 +254,14 @@ const AddProductForm = () => {
                                 htmlFor="materials"
                                 className="block mb-2 text-gray-700"
                             >
-                                Materials:
+                                Material:
                             </label>
                             <input
                                 type="text"
                                 name="materials"
                                 value={formData.materials}
                                 onChange={handleChange}
-                                placeholder="Materials"
+                                placeholder="Material"
                                 className="w-full p-4 border rounded shadow-sm"
                                 required
                             />
@@ -256,7 +270,7 @@ const AddProductForm = () => {
                         {formData.productDetails.map((detail, index) => (
                             <div key={index} className="mb-4">
                                 <label className="block mb-2 text-gray-700">
-                                    Product Details {index + 1}:
+                                    Item Size {index + 1}:
                                 </label>
                                 <div className="flex gap-2 mb-2">
                                     <input
@@ -325,6 +339,57 @@ const AddProductForm = () => {
                         </button>
 
                         <div className="mb-4">
+                            <label className="block mb-2 text-gray-700">
+                                Carton Size:
+                            </label>
+                            <div className="flex gap-2 mb-2">
+                                <input
+                                    type="text"
+                                    name="lengthD"
+                                    value={formData.cartonSize.lengthD}
+                                    onChange={handleCartonChange}
+                                    placeholder="Length"
+                                    className="w-full p-4 border rounded shadow-sm"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="width"
+                                    value={formData.cartonSize.width}
+                                    onChange={handleCartonChange}
+                                    placeholder="Width"
+                                    className="w-full p-4 border rounded shadow-sm"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    name="height"
+                                    value={formData.cartonSize.height}
+                                    onChange={handleCartonChange}
+                                    placeholder="Height"
+                                    className="w-full p-4 border rounded shadow-sm"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        <div className="mb-4">
+                            <label
+                                htmlFor="unit"
+                                className="block mb-2 text-gray-700"
+                            >
+                                Unit:
+                            </label>
+                            <input
+                                type="text"
+                                name="unit"
+                                value={formData.unit}
+                                onChange={handleChange}
+                                placeholder="Unit (e.g., Set of 3)"
+                                className="w-full p-4 border rounded shadow-sm"
+                            />
+                        </div>
+                        <div className="mb-4">
                             <label
                                 htmlFor="technique"
                                 className="block mb-2 text-gray-700"
@@ -384,28 +449,6 @@ const AddProductForm = () => {
                                 ))}
                             </select>
                         </div>
-
-                        <div className="mb-4">
-                            <label
-                                htmlFor="dashboardView"
-                                className="block mb-2 text-gray-700"
-                            >
-                                Dashboard View:
-                            </label>
-                            <select
-                                name="dashboardView"
-                                id="dashboardView"
-                                onChange={handleChange}
-                                className="w-full p-4 bg-white border rounded shadow-sm"
-                                required
-                            >
-                                {dashboard.map((item, index) => (
-                                    <option value={item} key={index}>
-                                        {item}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
                     </div>
                     <div>
                         <div className="mb-4">
@@ -431,14 +474,14 @@ const AddProductForm = () => {
                                 htmlFor="pricePerPiece"
                                 className="block mb-2 text-gray-700"
                             >
-                                FOB Price Per Piece:
+                                FOB Price/Pcs:
                             </label>
                             <input
                                 type="text"
                                 name="pricePerPiece"
                                 value={formData.pricePerPiece}
                                 onChange={handleChange}
-                                placeholder="FOB Price Per Piece"
+                                placeholder="FOB Price/Pcs"
                                 className="w-full p-4 border rounded shadow-sm"
                                 required
                             />
@@ -467,14 +510,14 @@ const AddProductForm = () => {
                                 htmlFor="moq"
                                 className="block mb-2 text-gray-700"
                             >
-                                Minimum Order Quantity:
+                                MOQ:
                             </label>
                             <input
                                 type="text"
                                 name="moq"
                                 value={formData.moq}
                                 onChange={handleChange}
-                                placeholder="Minimum Order Quantity"
+                                placeholder="MOQ"
                                 className="w-full p-4 border rounded shadow-sm"
                                 required
                             />
