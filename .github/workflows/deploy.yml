@@ -34,5 +34,5 @@ jobs:
             npm run build
             # Try to restart the pm2 process named 'frontend'. If it doesn't exist, try to start it.
             # Adjust the start command below to match how you start the app on the server (ecosystem file, npm run start, or next start).
-            pm2 restart frontend || pm2 start npm --name frontend -- start
+            pm2 restart frontend-app || pm2 start npm --name frontend -- start
           "
