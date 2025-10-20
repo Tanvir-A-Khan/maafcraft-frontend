@@ -1,3 +1,6 @@
 {
+  // Using Next.js recommended ESLint configs. If you get "Failed to load config \"next/babel\"",
+  // ensure you have the package "eslint-config-next" installed (it's included with Next by default).
+  // If ESLint runs in a different environment (CI or a custom container), install dependencies there as well.
   "extends": ["next/babel","next/core-web-vitals"]
 }
